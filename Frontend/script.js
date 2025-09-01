@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ API URL Detection
   const API_URL = window.location.hostname === "localhost"
     ? "http://localhost:3000"
-    : "https://modsser-enterprises.onrender.com"; // 👈 Your live backend URL
+    : "https://modsserenterprisesbackend.onrender.com"; // 👈 Your live backend URL
 
   if (!form) return;
 
