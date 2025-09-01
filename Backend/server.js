@@ -6,7 +6,7 @@ const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://mdsadiksadik464_db_user:<db_password>@cluster0.sdat6m9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI || "MONGO_URI=mongodb+srv://mdsadiksadik464_db_user:2LsFzlYVFM3EdrNq@cluster0.sdat6m9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
  
 // ✅ Middleware
 app.use(cors());
