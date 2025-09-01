@@ -3,7 +3,11 @@
     "@tailwindcss/cli": "^4.1.12",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "mongodb": "^6.19.0",
+    "mongoos": "^0.0.1-security",
+    "mongoose": "^8.18.0",
     "tailwindcss": "^4.1.12"
   },
   "name": "modsserenterprises.com",

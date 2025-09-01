@@ -1,78 +1,84 @@
-
-
+// ==========================
 // Mobile Menu Toggle
+// ==========================
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 
-menuToggle.addEventListener('click', () => {
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
-});
+  });
+}
 
-// Navbar Scroll Effect
+// ==========================
+// Navbar Scroll Effect & Back to Top Button
+// ==========================
 const navbar = document.getElementById('navbar');
+const backToTopBtn = document.getElementById('back-to-top');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('nav-scroll');
-    } else {
-        navbar.classList.remove('nav-scroll');
-    }
+  if (window.scrollY > 50) {
+    navbar?.classList.add('nav-scroll');
+  } else {
+    navbar?.classList.remove('nav-scroll');
+  }
 
-    // Back to top button visibility
-    const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
     if (window.scrollY > 300) {
-        backToTopBtn.classList.remove('opacity-0', 'invisible');
-        backToTopBtn.classList.add('opacity-100', 'visible');
+      backToTopBtn.classList.remove('opacity-0', 'invisible');
+      backToTopBtn.classList.add('opacity-100', 'visible');
     } else {
-        backToTopBtn.classList.remove('opacity-100', 'visible');
-        backToTopBtn.classList.add('opacity-0', 'invisible');
+      backToTopBtn.classList.remove('opacity-100', 'visible');
+      backToTopBtn.classList.add('opacity-0', 'invisible');
     }
+  }
 });
 
-// Smooth Scrolling
+// ==========================
+// Smooth Scrolling for Anchor Links
+// ==========================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
 
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // Close mobile menu if open
-            mobileMenu.classList.add('hidden');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      mobileMenu?.classList.add('hidden');
 
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Back to Top Button
-document.getElementById('back-to-top').addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
         behavior: 'smooth'
-    });
+      });
+    }
+  });
 });
 
-// Form submission handling
-// const contactForm = document.querySelector('form');
-// if (contactForm) {
-//     contactForm.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         // Here you would typically send the form data to a server
-//         alert('Thank you for your message! We will contact you soon.');
-//         this.reset();
-//     });
-// }
+// ==========================
+// Back to Top Button Click
+// ==========================
+backToTopBtn?.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 
-
-// script.js
+// ==========================
+// Form Submission Handling
+// ==========================
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
+  // ✅ API URL Detection
+  const API_URL = window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://modsser-enterprises.onrender.com"; // 👈 Your live backend URL
+
+  if (!form) return;
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -85,29 +91,42 @@ document.addEventListener("DOMContentLoaded", () => {
       message: document.getElementById("message").value.trim(),
     };
 
-    if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
+    // ✅ Basic Validation
+    if (Object.values(formData).some(field => !field)) {
       alert("Please fill all fields.");
       return;
     }
 
     try {
-      const res = await fetch("/save", {
+      // Disable button & show loading
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+      }
+
+      const res = await fetch(`${API_URL}/save`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
+
       if (!res.ok) {
         alert(data.message || "Failed to save.");
-        return;
+      } else {
+        alert(data.message || "Form submitted successfully!");
+        form.reset();
       }
-
-      alert(data.message || "Saved!");
-      form.reset();
     } catch (err) {
-      console.error(err);
+      console.error("❌ Error:", err);
       alert("Something went wrong. Please try again.");
+    } finally {
+      // Enable button again
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit";
+      }
     }
   });
 });

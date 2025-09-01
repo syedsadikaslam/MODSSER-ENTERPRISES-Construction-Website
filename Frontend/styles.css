@@ -21,26 +21,36 @@ body {
 
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('img/background1.png') 
+                url('img/background/backg1.JPG') 
                 no-repeat center center/cover;
     height: 100vh;
-    animation: changeBg 6s infinite;
+    animation: changeBg 20s infinite;
 }
 
 @keyframes changeBg {
     0% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                    url('img/background1.png') 
+                    url('img/background/backg1.JPG') 
+                    no-repeat center center/cover;
+    }
+    25% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                    url('img/background/backg2.png') 
                     no-repeat center center/cover;
     }
     50% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                    url('img/background2.jpeg') 
+                    url('img/background/backg3.png') 
+                    no-repeat center center/cover;
+    }
+    75% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                    url('img/background/backg4.png') 
                     no-repeat center center/cover;
     }
     100% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                    url('img/background1.png') 
+                    url('img/background/backg1.JPG') 
                     no-repeat center center/cover;
     }
 }
