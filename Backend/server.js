@@ -9,7 +9,7 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://mdsadiksadik464_db_use
 
 // ✅ Middleware
 app.use(cors({
-  origin: ['https://www.modsserenterprises.in/'], // Your Vercel frontend
+  origin: ['https://www.modsserenterprises.in'], // Your Vercel frontend
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
