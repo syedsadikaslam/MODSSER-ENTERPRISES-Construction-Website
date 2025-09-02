@@ -73,10 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const submitBtn = form?.querySelector('button[type="submit"]');
 
-  // ✅ API URL Detection
+  // ✅ Detect environment (local or live)
   const API_URL = window.location.hostname === "localhost"
     ? "http://localhost:3000"
-    : "https://modsserenterprisesbackend.onrender.com"; // 👈 Your live backend URL
+    : "https://modsserenterprisesbackend.onrender.com";
 
   if (!form) return;
 
@@ -84,16 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      subject: document.getElementById("subject").value.trim(),
-      message: document.getElementById("message").value.trim(),
+      name: document.getElementById("name")?.value.trim(),
+      email: document.getElementById("email")?.value.trim(),
+      phone: document.getElementById("phone")?.value.trim(),
+      subject: document.getElementById("subject")?.value.trim(),
+      message: document.getElementById("message")?.value.trim(),
     };
 
     // ✅ Basic Validation
     if (Object.values(formData).some(field => !field)) {
-      alert("Please fill all fields.");
+      alert("⚠️ Please fill all fields.");
       return;
     }
 
@@ -113,14 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message || "Failed to save.");
+        alert("❌ " + (data.message || "Failed to save."));
       } else {
-        alert(data.message || "Form submitted successfully!");
+        alert("✅ " + (data.message || "Form submitted successfully!"));
         form.reset();
       }
     } catch (err) {
       console.error("❌ Error:", err);
-      alert("Something went wrong. Please try again.");
+      alert("⚠️ Something went wrong. Please try again.");
     } finally {
       // Enable button again
       if (submitBtn) {
