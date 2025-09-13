@@ -36,6 +36,27 @@
             <button class="md:hidden text-white text-2xl" id="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
+            
+
+            <script type="text/javascript">
+             (function(d, t) {
+             var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+             v.onload = function() {
+             window.voiceflow.chat.load({
+             verify: { projectID: '68c57b283596867e16d74fe2' },
+             url: 'https://general-runtime.voiceflow.com',
+             versionID: 'production',
+              voice: {
+              url: "https://runtime-api.voiceflow.com"
+                }
+           });
+           }
+           v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+            })(document, 'script');
+            </script>
+
+
+            
         </div>
 
         <!-- Mobile Menu -->
@@ -732,11 +753,11 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button
-        class="fixed bottom-6 right-6 bg-orange-500 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300"
-        id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+   <button
+  class="fixed bottom-6 left-6 bg-orange-500 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300"
+  id="back-to-top">
+  <i class="fas fa-arrow-up"></i>
+  </button>
 
     <script src="script.js"></script>
 </body>
