@@ -68,51 +68,51 @@ app.post('/save', async (req, res) => {
       to: email,
       subject: `Let's Build Together — ${subject}`,
       html: `
-        <div style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
-          <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; overflow: hidden;">
-            <div style="background: linear-gradient(90deg,#1f7bd8,#0a4ea0); color: white; padding: 16px 24px;">
-              <h2 style="margin: 0;">Modsser Enterprises</h2>
-              <p style="margin: 0; font-size: 12px;">Construction | Renovation | Infrastructure</p>
-            </div>
-            <div style="padding: 24px;">
-              <p>Hello <strong>${name}</strong>,</p>
-              <p>Thank you for reaching out to Modsser Enterprises. We’ve received your inquiry:</p>
-              <p><b>Subject:</b> ${subject}</p>
-              <p><b>Message:</b> ${message}</p>
-              <p>We’ll get back to you soon. For urgent assistance, you can contact us directly at:</p>
-              <p> Modsser Enterprises provides end-to-end construction services — residential, commercial, industrial and specialized renovations. We deliver projects with experience, quality, and reliability. </p>
-               <div style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
-          <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; overflow: hidden;">
-            <div style="background: linear-gradient(90deg,#1f7bd8,#0a4ea0); color: white; padding: 16px 24px;">
-              <h2 style="margin: 0;">Modsser Enterprises</h2>
-              <p style="margin: 0; font-size: 12px;">Construction | Renovation | Infrastructure</p>
-            </div>
-            <div style="padding: 24px;">
-              <p>Hello <strong>${name}</strong>,</p>
-              <p>Thank you for reaching out to Modsser Enterprises. We’ve received your inquiry:</p>
-              <p><b>Subject:</b> ${subject}</p>
-              <p><b>Message:</b> ${message}</p>
-              <p>We’ll get back to you soon. For urgent assistance, you can contact us directly at:</p>
-              <p> Modsser Enterprises provides end-to-end construction services — residential, commercial, industrial and specialized renovations. We deliver projects with experience, quality, and reliability. </p>
-              <a href="7254087502" style="display:inline-block; padding:10px 18px; background:#0a4ea0; color:#fff; border-radius:6px; text-decoration:none;"> Schedule a call </a>
-              <br/>
-              <p>Best Regards,<br/>Modsser Enterprises Team</p>
-              <hr/>
-              <p style="font-size: 12px; color: #666;">
-                Website: <a href="https://www.modsserenterprises.in/" style="color:#0a4ea0;">modsserenterprises.in</a>
-              </p>
-            </div>
-          </div>
-        </div>
-              <br/>
-              <p>Best Regards,<br/>Modsser Enterprises Team</p>
-              <hr/>
-              <p style="font-size: 12px; color: #666;">
-                Website: <a href="https://www.modsserenterprises.in/" style="color:#0a4ea0;">modsserenterprises.in</a>
-              </p>
-            </div>
-          </div>
-        </div>
+       <div style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+  <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    
+    <!-- Header -->
+    <div style="background: linear-gradient(90deg,#1f7bd8,#0a4ea0); color: white; padding: 16px 24px;">
+      <h2 style="margin: 0;">Modsser Enterprises</h2>
+      <p style="margin: 0; font-size: 12px;">Construction | Renovation | Infrastructure</p>
+    </div>
+
+    <!-- Body -->
+    <div style="padding: 24px;">
+      <p>Hello <strong>${name}</strong>,</p>
+
+      <p>Thank you for reaching out to <strong>Modsser Enterprises</strong>. We’ve received your inquiry and appreciate your interest in our services.</p>
+
+      <p><b>Subject:</b> ${subject}</p>
+      <p><b>Message:</b> ${message}</p>
+
+      <p style="margin-top: 16px;">
+        Modsser Enterprises provides end-to-end construction services — residential, commercial, industrial, and specialized renovations.
+        We deliver projects with experience, quality, and reliability.
+      </p>
+
+      <p style="margin-top: 16px;">We’ll get back to you soon. For urgent assistance, you can contact us directly:</p>
+
+      <a href="tel:7254087502"
+         style="display:inline-block; margin-top:8px; padding:10px 18px; background:#0a4ea0; color:#fff; border-radius:6px; text-decoration:none; font-weight:bold;">
+         📞 Schedule a Call
+      </a>
+
+      <br/><br/>
+      <p>Best Regards,<br/><strong>Modsser Enterprises Team</strong></p>
+
+      <hr style="border:none; border-top:1px solid #ddd; margin:20px 0;" />
+
+      <p style="font-size: 12px; color: #666;">
+        Website: 
+        <a href="https://www.modsserenterprises.in/" style="color:#0a4ea0; text-decoration:none;">
+          modsserenterprises.in
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
       `,
     };
 
