@@ -6,7 +6,7 @@ const contactRoutes = require('./routes/contactRoutes.js'); // ✅ Router import
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://mdsadiksadik464_db_user:2LsFzlYVFM3EdrNq@cluster0.sdat6m9.mongodb.net/mydatabase?retryWrites=true&w=majority&appName=Cluster0";
 
 // ✅ Middleware
 app.use(cors({
