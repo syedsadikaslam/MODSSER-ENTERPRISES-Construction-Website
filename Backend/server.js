@@ -94,7 +94,7 @@ app.post('/save', async (req, res) => {
     // ✅ Configure Brevo API
     const apiInstance = new brevo.TransactionalEmailsApi();
     const apiKey = apiInstance.authentications['apiKey'];
-    apiKey.apiKey = process.env.BREVO_API_KEY; // ✅ Correct key setup
+    apiKey.apiKey = process.env.BREVO_API_KEY; // ✅ Brevo API key from .env
 
     // ✅ Create email object
     const sendSmtpEmail = {
@@ -107,16 +107,4 @@ app.post('/save', async (req, res) => {
     // ✅ Send Email via Brevo API
     await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-    console.log(`📨 Email sent successfully to ${email}`);
-    res.status(200).json({ message: 'Form submitted successfully & email sent!' });
-
-  } catch (error) {
-    console.error('❌ Error sending email:', error.response?.text || error.message);
-    res.status(500).json({ message: 'Failed to save or send email.' });
-  }
-});
-
-// ✅ Start Server
-app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
-});
+    console.log(`📨 Email sent succes
