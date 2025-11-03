@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
+const brevo = require('@getbrevo/brevo'); // ✅ Use Brevo API instead of SMTP
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,29 +32,9 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-// ✅ Nodemailer Transporter (Configured for Brevo)
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT),
-  secure: false, // use TLS for port 587
-  auth: {
-    user: process.env.SMTP_USER,      // Brevo login (example: 9aa53e001@smtp-brevo.com)
-    pass: process.env.SMTP_PASSWORD,  // Brevo SMTP key
-  },
-});
-
-// ✅ Verify SMTP Connection
-transporter.verify(function (error, success) {
-  if (error) {
-    console.error('❌ SMTP Connection Error:', error);
-  } else {
-    console.log('✅ SMTP Server is ready to send emails');
-  }
-});
-
 // ✅ Health Route
 app.get('/', (req, res) => {
-  res.send('✅ Backend + MongoDB + Brevo Email Working Fine!');
+  res.send('✅ Backend + MongoDB + Brevo API Working Fine!');
 });
 
 // ✅ Contact Form Route
@@ -93,7 +73,7 @@ app.post('/save', async (req, res) => {
                         residential, commercial, industrial, and specialized renovations. 
                         Our team will get back to you shortly.
                       </p>
-                      <a href="mailto:mdsadiksadik464@gmail.com" 
+                      <a href="mailto:mdsadiktenth464@gmail.com" 
                          style="display:inline-block; padding:10px 18px; background:#0a4ea0; color:#fff; border-radius:6px; text-decoration:none;">
                         Schedule a call
                       </a>
@@ -111,13 +91,17 @@ app.post('/save', async (req, res) => {
       </html>
     `;
 
-    // 📤 Send Email
-    await transporter.sendMail({
-      from: `"Modsser Enterprises" <${process.env.SMTP_FROM}>`,
-      to: email,
-      subject: 'Thank you for contacting Modsser Enterprises',
-      html: htmlTemplate,
-    });
+    // 📤 Send Email via Brevo API
+    const apiInstance = new brevo.TransactionalEmailsApi();
+    apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
+    sendSmtpEmail.subject = 'Thank you for contacting Modsser Enterprises';
+    sendSmtpEmail.htmlContent = htmlTemplate;
+    sendSmtpEmail.sender = { name: 'Modsser Enterprises', email: process.env.FROM_EMAIL };
+    sendSmtpEmail.to = [{ email }];
+
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
 
     console.log(`📨 Email sent to ${email}`);
     res.status(200).json({ message: 'Form submitted successfully & email sent!' });
