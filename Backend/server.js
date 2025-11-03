@@ -2,13 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const brevo = require('@getbrevo/brevo'); // ✅ Use Brevo API instead of SMTP
+const brevo = require('@getbrevo/brevo'); // ✅ Official Brevo SDK
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// ✅ Middleware Setup
+// ✅ Middleware
 app.use(cors({
   origin: ['https://www.modsserenterprises.in'],
   methods: ['GET', 'POST'],
@@ -46,7 +46,7 @@ app.post('/save', async (req, res) => {
       return res.status(400).json({ message: 'All fields are required.' });
     }
 
-    // 💾 Save to DB
+    // 💾 Save to MongoDB
     const newContact = new Contact({ name, email, phone, subject, message });
     await newContact.save();
 
@@ -91,23 +91,27 @@ app.post('/save', async (req, res) => {
       </html>
     `;
 
-    // 📤 Send Email via Brevo API
+    // ✅ Configure Brevo API
     const apiInstance = new brevo.TransactionalEmailsApi();
-    apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+    const apiKey = apiInstance.authentications['apiKey'];
+    apiKey.apiKey = process.env.BREVO_API_KEY; // ✅ Correct key setup
 
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-    sendSmtpEmail.subject = 'Thank you for contacting Modsser Enterprises';
-    sendSmtpEmail.htmlContent = htmlTemplate;
-    sendSmtpEmail.sender = { name: 'Modsser Enterprises', email: process.env.FROM_EMAIL };
-    sendSmtpEmail.to = [{ email }];
+    // ✅ Create email object
+    const sendSmtpEmail = {
+      to: [{ email: email, name: name }],
+      sender: { name: "Modsser Enterprises", email: process.env.FROM_EMAIL },
+      subject: "Thank you for contacting Modsser Enterprises",
+      htmlContent: htmlTemplate,
+    };
 
+    // ✅ Send Email via Brevo API
     await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-    console.log(`📨 Email sent to ${email}`);
+    console.log(`📨 Email sent successfully to ${email}`);
     res.status(200).json({ message: 'Form submitted successfully & email sent!' });
 
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('❌ Error sending email:', error.response?.text || error.message);
     res.status(500).json({ message: 'Failed to save or send email.' });
   }
 });
