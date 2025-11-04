@@ -54,68 +54,68 @@ app.post('/save', async (req, res) => {
    const htmlTemplate = `
 const htmlTemplate = `
 <html>
-  <body style="font-family: Arial, sans-serif; background-color:#f4f6f8; margin:0; padding:0;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8;">
+  <body style="font-family: Arial, sans-serif; background-color:#f5f7fa; margin:0; padding:0;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f5f7fa;">
       <tr>
-        <td align="center" style="padding:20px;">
-          <table width="600" style="background:#ffffff; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,0.05);">
+        <td align="center" style="padding:16px;">
+          <table width="520" style="background:#ffffff; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
             
             <!-- Header -->
             <tr>
-              <td style="padding:18px 24px; background:linear-gradient(90deg,#0a4ea0,#1f7bd8); color:#fff; border-radius:8px 8px 0 0;">
-                <h2 style="margin:0; font-size:20px;">Modsser Enterprises</h2>
-                <p style="margin:0; font-size:12px;">Construction | Renovation | Infrastructure</p>
+              <td style="padding:12px 18px; background:linear-gradient(90deg,#0a4ea0,#1f7bd8); color:#fff; border-radius:6px 6px 0 0;">
+                <h2 style="margin:0; font-size:16px;">Modsser Enterprises</h2>
+                <p style="margin:0; font-size:10px;">Construction | Renovation | Infrastructure</p>
               </td>
             </tr>
 
             <!-- Body -->
             <tr>
-              <td style="padding:24px; font-size:14px; color:#333; line-height:1.6;">
-                <h3 style="color:#0a2a51; font-size:18px; margin-top:0;">Building dreams with precision and trust</h3>
-                <p>Hello <strong>\${name}</strong>,</p>
-                <p>
-                  Thank you for reaching out to <strong>Modsser Enterprises</strong> — your trusted partner for 
-                  high-quality construction, renovation, and infrastructure projects. 
-                  We’re excited to learn more about your vision and how we can bring it to life.
+              <td style="padding:18px; font-size:12px; color:#333; line-height:1.5;">
+                <h3 style="color:#0a2a51; font-size:14px; margin-top:0;">Building dreams with precision and trust</h3>
+                <p style="margin:0 0 8px 0;">Hello <strong>\${name}</strong>,</p>
+                <p style="margin:0 0 10px 0;">
+                  Thank you for reaching out to <strong>Modsser Enterprises</strong> — your trusted partner in 
+                  <strong>construction, renovation</strong>, and <strong>infrastructure</strong> development.
+                  We appreciate your interest and look forward to learning more about your project.
                 </p>
-                <p>
-                  Our team specializes in:
-                  <ul style="margin:8px 0 16px 20px; padding:0;">
-                    <li>Residential and commercial building construction</li>
-                    <li>Interior and exterior renovations</li>
-                    <li>Industrial site development</li>
-                    <li>Structural and finishing work with premium materials</li>
-                  </ul>
+
+                <p style="margin:0 0 8px 0;">Our services include:</p>
+                <ul style="margin:4px 0 10px 18px; padding:0;">
+                  <li>Residential & commercial construction</li>
+                  <li>Interior and exterior renovation</li>
+                  <li>Industrial site development</li>
+                  <li>Finishing & architectural design</li>
+                </ul>
+
+                <p style="margin:0 0 10px 0;">
+                  Our approach combines <strong>quality materials</strong>, <strong>skilled workmanship</strong>, 
+                  and a <strong>commitment to deadlines</strong> — ensuring long-lasting, elegant structures.
                 </p>
-                <p>
-                  Every project we take on is built on three key pillars:
-                  <strong>Quality, Commitment, and Transparency.</strong> 
-                  From the initial design discussion to the final handover, we ensure every step is handled 
-                  with professionalism and attention to detail.
-                </p>
-                <p>
-                  One of our representatives will contact you soon to discuss your project requirements, 
-                  budget preferences, and timelines. If you’d like to speak immediately, you can reach us directly.
+
+                <p style="margin:0 0 12px 0;">
+                  One of our experts will contact you soon to discuss your ideas in detail.
+                  For quick assistance, feel free to reach out directly below:
                 </p>
 
                 <!-- Buttons -->
-                <div style="margin-top:20px;">
+                <div style="margin-top:12px;">
                   <a href="tel:7254087502" 
-                     style="display:inline-block; margin-right:10px; padding:10px 18px; background:#0a4ea0; color:#fff; border-radius:6px; text-decoration:none; font-size:13px;">
+                     style="display:inline-block; margin-right:6px; padding:8px 14px; background:#0a4ea0; color:#fff; border-radius:4px; text-decoration:none; font-size:11px;">
                      📞 Call Now
                   </a>
                   <a href="mailto:mdsadiktenth464@gmail.com" 
-                     style="display:inline-block; padding:10px 18px; background:#1f7bd8; color:#fff; border-radius:6px; text-decoration:none; font-size:13px;">
+                     style="display:inline-block; padding:8px 14px; background:#1f7bd8; color:#fff; border-radius:4px; text-decoration:none; font-size:11px;">
                      ✉️ Email Us
                   </a>
                 </div>
 
-                <p style="margin-top:24px; color:#555; font-size:13px;">
-                  Thank you once again for choosing Modsser Enterprises. 
-                  We look forward to turning your ideas into structures that inspire.
+                <p style="margin-top:14px; color:#555; font-size:11px;">
+                  We’re excited to help turn your vision into a structure you’ll be proud of. 
+                  Thank you again for choosing Modsser Enterprises.
                 </p>
 
-                <p style="margin-top:16px; font-size:12px; color:#777; border-top:1px solid #eee; padding-top:12px;">
+                <!-- Footer -->
+                <p style="margin-top:10px; font-size:10px; color:#777; border-top:1px solid #eee; padding-top:8px;">
                   Regards,<br/>
                   <strong>Modsser Enterprises Team</strong><br/>
                   Website: <a href="https://www.modsserenterprises.in/" style="color:#0a4ea0; text-decoration:none;">modsserenterprises.in</a><br/>
