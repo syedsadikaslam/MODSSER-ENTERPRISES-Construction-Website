@@ -71,7 +71,7 @@ app.post('/save', async (req, res) => {
             <tr>
               <td style="padding:18px; font-size:12px; color:#333; line-height:1.5;">
                 <h3 style="color:#0a2a51; font-size:14px; margin-top:0;">Building dreams with precision and trust</h3>
-                <p style="margin:0 0 8px 0;">Hello <strong>\${name}</strong>,</p>
+                <p style="margin:0 0 8px 0;">Hello <strong> ${name} </strong>,</p>
                 <p style="margin:0 0 10px 0;">
                   Thank you for reaching out to <strong>Modsser Enterprises</strong> — your trusted partner in 
                   <strong>construction, renovation</strong>, and <strong>infrastructure</strong> development.
@@ -85,12 +85,7 @@ app.post('/save', async (req, res) => {
                   <li>Industrial site development</li>
                   <li>Finishing & architectural design</li>
                 </ul>
-
-                <p style="margin:0 0 10px 0;">
-                  Our approach combines <strong>quality materials</strong>, <strong>skilled workmanship</strong>, 
-                  and a <strong>commitment to deadlines</strong> — ensuring long-lasting, elegant structures.
-                </p>
-
+                
                 <p style="margin:0 0 12px 0;">
                   One of our experts will contact you soon to discuss your ideas in detail.
                   For quick assistance, feel free to reach out directly below:
