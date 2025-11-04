@@ -52,7 +52,6 @@ app.post('/save', async (req, res) => {
 
     // 📧 HTML Email Template
    const htmlTemplate = `
-const htmlTemplate = `
 <html>
   <body style="font-family: Arial, sans-serif; background-color:#f5f7fa; margin:0; padding:0;">
     <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f5f7fa;">
