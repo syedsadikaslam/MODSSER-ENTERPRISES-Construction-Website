@@ -1,6 +1,4 @@
-// ==========================
 // Mobile Menu Toggle
-// ==========================
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -10,9 +8,7 @@ if (menuToggle && mobileMenu) {
   });
 }
 
-// ==========================
 // Navbar Scroll Effect & Back to Top Button
-// ==========================
 const navbar = document.getElementById('navbar');
 const backToTopBtn = document.getElementById('back-to-top');
 
@@ -34,9 +30,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ==========================
 // Smooth Scrolling for Anchor Links
-// ==========================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -56,9 +50,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ==========================
 // Back to Top Button Click
-// ==========================
 backToTopBtn?.addEventListener('click', () => {
   window.scrollTo({
     top: 0,
@@ -66,17 +58,13 @@ backToTopBtn?.addEventListener('click', () => {
   });
 });
 
-// ==========================
 // Form Submission Handling
-// ==========================
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const submitBtn = form?.querySelector('button[type="submit"]');
 
-  // ✅ API URL Detection
-  const API_URL = window.location.hostname === "localhost"
-    ? "http://localhost:3000"
-    : "https://modsserenterprisesbackend.onrender.com"; // 👈 Your live backend URL
+  // API URL Detection
+  const API_URL = "https://modsserenterprisesbackend.onrender.com"; 
 
   if (!form) return;
 
@@ -91,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: document.getElementById("message").value.trim(),
     };
 
-    // ✅ Basic Validation
+    //  Basic Validation
     if (Object.values(formData).some(field => !field)) {
       alert("Please fill all fields.");
       return;
