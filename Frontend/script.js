@@ -1,9 +1,9 @@
 // Mobile Menu Toggle
-const menuToggle = document.getElementById('menu-toggle');
+const menuCheckbox = document.getElementById('menu-checkbox');
 const mobileMenu = document.getElementById('mobile-menu');
 
-if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener('click', () => {
+if (menuCheckbox && mobileMenu) {
+  menuCheckbox.addEventListener('change', () => {
     mobileMenu.classList.toggle('hidden');
   });
 }
