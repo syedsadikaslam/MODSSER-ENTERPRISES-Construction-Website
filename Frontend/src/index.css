@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #004a7c;
+    --secondary: #f7931e;
+    --dark: #1e293b;
+    --light: #f8fafc;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('/img/background/backg1.JPG') no-repeat center center/cover;
+    height: 100vh;
+    animation: changeBg 20s infinite;
+}
+
+@keyframes changeBg {
+    0% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/background/backg1.JPG') no-repeat center center/cover;
+    }
+
+    25% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/background/backg2.png') no-repeat center center/cover;
+    }
+
+    50% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/background/backg3.png') no-repeat center center/cover;
+    }
+
+    75% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/background/backg4.png') no-repeat center center/cover;
+    }
+
+    100% {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('/img/background/backg1.JPG') no-repeat center center/cover;
+    }
+}
+
+.nav-scroll {
+    background-color: rgba(0, 74, 124, 0.9) !important;
+    /* Force override for transparency logic */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.ENTERPRISES {
+    color: #cd7613;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #003a62;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #e0841a;
+    transform: translateY(-3px);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cta-banner {
+    animation: pulse 3s infinite;
+}
+
+/* Clients Section */
+.client-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.client-box {
+    width: 150px;
+    height: 150px;
+    background: #f1f1f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 0.3s;
+}
+
+.client-box:hover {
+    transform: translateY(-5px);
+    background-color: #e6f2ff;
+}
+
+.client-box img {
+    max-width: 80px;
+    max-height: 60px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .client-box {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Hamburger Menu CSS */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+}
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: -16px;
+    height: 1.3em;
+    width: 1.3em;
+}
+
+.checkmark span {
+    width: 32px;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+
+.checkmark span:nth-child(1) {
+    top: 10%;
+}
+
+.checkmark span:nth-child(2) {
+    top: 50%;
+}
+
+.checkmark span:nth-child(3) {
+    top: 90%;
+}
+
+.container input:checked+.checkmark span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.container input:checked+.checkmark span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+.container input:checked+.checkmark span:nth-child(3) {
+    transform: translateX(-50px);
+    opacity: 0;
+}
