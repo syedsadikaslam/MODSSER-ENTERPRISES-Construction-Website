@@ -15,6 +15,11 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
+if (!process.env.JWT_SECRET) {
+  console.error("❌ CRITICAL ERROR: JWT_SECRET is not defined in .env file!");
+  process.exit(1);
+}
+
 // ✅ Security & Middleware
 // ✅ Security & Middleware
 app.use(helmet());
@@ -22,6 +27,7 @@ app.use(helmet());
 const allowedOrigins = [
   'https://www.modsserenterprises.in',
   'http://localhost:5173',
+  process.env.FRONTEND_URL, // Allow configured frontend URL
   'https://modsser-enterprises-construction-website.vercel.app', // Add potential Vercel domain
   'https://modsserenterprisesbackend.onrender.com' // Add backend domain
 ];
@@ -44,9 +50,13 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 // ✅ MongoDB Connection
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, {
+  family: 4, // Force IPv4 to prevent ESERVFAIL/timeout issues
+})
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => {
     console.error('❌ MongoDB Connection Failed:');
@@ -59,7 +69,12 @@ app.get('/', (req, res) => {
 });
 
 // ✅ Routes
-app.use('/api/contacts', contactRoutes); // Change: Prefixing with /api/ is a better practice
+const authRoutes = require('./routes/auth.routes');
+const bookingRoutes = require('./routes/booking.routes');
+
+app.use('/api/contacts', contactRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // ✅ Start Server
 app.listen(PORT, () => {
