@@ -2,6 +2,8 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projectsData";
 
+import SEO from '../components/common/SEO';
+
 const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
@@ -21,6 +23,13 @@ const ProjectDetail = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen pt-24 pb-12">
+      <SEO
+        title={`${project.title} - Projects`}
+        description={project.desc}
+        keywords={`${project.title}, ${project.category}, construction projects, modsser enterprises, ${project.location}`}
+        image={project.img}
+        url={`/projects/${id}`}
+      />
       <div className="container mx-auto px-6">
         {/* Header Section */}
         <div className="mb-8">

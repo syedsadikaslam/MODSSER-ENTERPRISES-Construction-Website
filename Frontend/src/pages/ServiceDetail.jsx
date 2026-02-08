@@ -3,15 +3,17 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import { servicesData } from '../data/servicesData';
-import { 
-    ChevronLeft, 
-    ArrowRight, 
-    CheckCircle2, 
-    ShieldCheck, 
-    Star, 
+import {
+    ChevronLeft,
+    ArrowRight,
+    CheckCircle2,
+    ShieldCheck,
+    Star,
     Zap,
     Clock
 } from 'lucide-react';
+
+import SEO from '../components/common/SEO';
 
 const ServiceDetail = () => {
     const { type } = useParams();
@@ -57,11 +59,18 @@ const ServiceDetail = () => {
 
     return (
         <div className="bg-white min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900">
+            <SEO
+                title={`${service.title} Services in Begusarai`}
+                description={service.subtitle}
+                keywords={`${service.title}, construction services, begusarai, bihar, modsser enterprises`}
+                image={service.heroImage}
+                url={`/services/${type}`}
+            />
             <Navbar />
-            
+
             {/* --- HERO SECTION --- */}
             <div className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden">
-                <div 
+                <div
                     className="absolute inset-0 z-0 scale-105"
                     style={{
                         backgroundImage: `url('${service.heroImage}')`,
@@ -71,13 +80,13 @@ const ServiceDetail = () => {
                     }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 z-0" />
-                
+
                 <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
                     <Link to="/#services" className="inline-flex items-center text-white/80 hover:text-white mb-8 group bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 transition-all">
-                        <ChevronLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+                        <ChevronLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back to Exploration
                     </Link>
-                    
+
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center space-x-2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
                             <Star className="w-3 h-3 fill-white" />
@@ -91,13 +100,13 @@ const ServiceDetail = () => {
                         </p>
                         <div className="flex flex-wrap gap-4">
                             {/* UPDATED: BOOK NOW BUTTON */}
-                            <button 
+                            <button
                                 onClick={handleBookNow}
                                 className="px-10 py-5 bg-white text-blue-900 rounded-2xl font-black text-lg shadow-2xl hover:bg-blue-50 hover:scale-105 transition-all flex items-center"
                             >
                                 Book Now <ArrowRight className="ml-3 w-6 h-6" />
                             </button>
-                            
+
                             <div className="flex items-center text-white/80 px-4">
                                 <ShieldCheck className="w-5 h-5 mr-2 text-green-400" />
                                 <span className="font-semibold uppercase tracking-wider text-xs">Certified Professionals</span>
@@ -110,7 +119,7 @@ const ServiceDetail = () => {
             {/* --- MAIN CONTENT AREA --- */}
             <main className="max-w-7xl mx-auto px-6 py-24">
                 <div className="flex flex-col lg:flex-row gap-16">
-                    
+
                     {/* LEFT SIDE: SERVICE DETAILS */}
                     <div className="lg:w-2/3">
                         <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center">
@@ -155,7 +164,7 @@ const ServiceDetail = () => {
                             </ul>
 
                             {/* UPDATED: GET A QUOTE BUTTON (Scrolls to Contact) */}
-                            <button 
+                            <button
                                 onClick={handleGetQuote}
                                 className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black text-lg hover:bg-blue-700 shadow-xl shadow-blue-200 transition-all active:scale-95"
                             >

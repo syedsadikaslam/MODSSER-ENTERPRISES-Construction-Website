@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Calendar, MapPin, Notebook, ArrowRight, CheckCircle2, Loader2, Sparkles, Phone, Building2, Wallet } from 'lucide-react';
 
+import SEO from '../components/common/SEO';
+
 const BookingPage = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();

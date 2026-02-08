@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
+import SEO from '../components/common/SEO';
 
 const About = () => {
     useEffect(() => {
@@ -9,6 +10,11 @@ const About = () => {
 
     return (
         <>
+            <SEO
+                title="About Us - Modsser Enterprises"
+                description="Learn about Modsser Enterprises, our history, mission, vision, and the team driving excellence in construction services in Begusarai, Bihar."
+                url="/about"
+            />
             <Navbar />
             <div className="bg-slate-50 min-h-screen font-sans">
                 {/* Header */}
