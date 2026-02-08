@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // Configure axios defaults
-    axios.defaults.baseURL = 'https://www.modsserenterprises.in/api'; // Or your production URL
+    axios.defaults.baseURL = 'https://modsserenterprisesbackend.onrender.com/api'; 
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
@@ -46,27 +46,6 @@ export const AuthProvider = ({ children }) => {
         // googleLogout(); // Removed
         setUser(null);
     };
-
-    // Google Login is now handled by redirect to backend in Login.jsx
-
-    // We need to implement googleLogin on the button itself or use this hook if we want custom button
-    // Actually, for custom button we pass the login function. 
-    // Wait, the backend expects 'tokenId'. The @react-oauth/google 'useGoogleLogin' typically returns an access_token.
-    // We might need to adjust backend to accept access_token and fetch user info, OR use the credential response from <GoogleLogin /> component.
-    // Let's stick to the plan: Backend `verifyIdToken` expects an ID Token.
-    // Steps to fix:
-    // Option A: Use <GoogleLogin /> component (easy, returns credential/id_token).
-    // Option B: Use useGoogleLogin flow (returns access_token), then backend fetches user profile from Google.
-    //
-    // START_ADJUSTMENT: 
-    // My backend uses `client.verifyIdToken`. This requires an ID Token.
-    // The `<GoogleLogin />` component from `@react-oauth/google` return a 'credential' which IS the ID Token.
-    // The `useGoogleLogin` hook returns an `access_token` by default (implicit flow).
-    // To get id_token with hook, we need flow: 'auth-code' (returns code, exchange in backend) OR just use the component.
-    //
-    // Let's use the `loginGoogle` function that takes the `credential` from the component response.
-
-    // Old Google Callback handler removed
 
     return (
         <AuthContext.Provider value={{

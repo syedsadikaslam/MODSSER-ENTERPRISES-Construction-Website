@@ -5,8 +5,8 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    // Use environment variable for callback URL or fallback to localhost
-    `${process.env.BACKEND_URL || 'https://www.modsserenterprises.in'}/api/auth/google/callback`
+    // Use environment variable for callback URL or fallback to production backend
+    `${process.env.BACKEND_URL || 'https://modsserenterprisesbackend.onrender.com'}/api/auth/google/callback`
 );
 
 const signToken = (id) => {
@@ -23,7 +23,8 @@ const createSendToken = (user, statusCode, res) => {
             Date.now() + (process.env.JWT_COOKIE_EXPIRES_IN || 90) * 24 * 60 * 60 * 1000
         ),
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production' // secure only in production
+        secure: true, // Always secure for cross-site cookies
+        sameSite: 'none' // Required for cross-site cookies
     };
 
     res.cookie('jwt', token, cookieOptions);
@@ -148,17 +149,18 @@ exports.googleAuthCallback = async (req, res) => {
                 Date.now() + (process.env.JWT_COOKIE_EXPIRES_IN || 90) * 24 * 60 * 60 * 1000
             ),
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production'
+            secure: true,
+            sameSite: 'none'
         };
         res.cookie('jwt', token, cookieOptions);
 
         // Redirect to frontend
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = process.env.FRONTEND_URL || 'https://www.modsserenterprises.in';
         res.redirect(`${frontendUrl}/auth/callback?token=${token}`);
 
     } catch (err) {
         console.error('Google Auth Error:', err);
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const frontendUrl = process.env.FRONTEND_URL || 'https://www.modsserenterprises.in';
         res.redirect(`${frontendUrl}/login?error=auth_failed`);
     }
 };
