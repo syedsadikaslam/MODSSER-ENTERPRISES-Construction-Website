@@ -20,16 +20,15 @@ if (!process.env.JWT_SECRET) {
   process.exit(1);
 }
 
-// ✅ Security & Middleware
-// ✅ Security & Middleware
+ // ✅ Security & Middleware
 app.use(helmet());
 
 const allowedOrigins = [
   'https://www.modsserenterprises.in',
   'http://localhost:5173',
   process.env.FRONTEND_URL, // Allow configured frontend URL
-  'https://modsser-enterprises-construction-website.vercel.app', // Add potential Vercel domain
-  'https://modsserenterprisesbackend.onrender.com' // Add backend domain
+  'https://www.modsserenterprises.in', // Add potential Vercel domain
+  'https://modsserenterprisesbackend.onrender.com/' // Add backend domain
 ];
 
 // Add process.env.ALLOWED_ORIGINS if set
