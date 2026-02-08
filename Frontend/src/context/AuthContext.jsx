@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // Configure axios defaults
-    axios.defaults.baseURL = 'http://localhost:3000/api'; // Or your production URL
+    axios.defaults.baseURL = 'https://www.modsserenterprises.in/api'; // Or your production URL
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
