@@ -148,7 +148,7 @@ const Signup = () => {
                             type="button"
                             onClick={async () => {
                                 try {
-                                    const res = await fetch('http://localhost:3000/api/auth/google/url');
+                                    const res = await fetch('https://www.modsserenterprises.in/api/auth/google/url');
                                     const data = await res.json();
                                     window.location.href = data.data.url;
                                 } catch (err) {
