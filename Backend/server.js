@@ -21,6 +21,7 @@ if (!process.env.JWT_SECRET) {
 }
 
 // ✅ Security & Middleware
+app.set('trust proxy', 1); // Trust first proxy (Render/Heroku/Vercel)
 app.use(helmet());
 
 const allowedOrigins = [

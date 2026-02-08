@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 // import { GoogleLogin } from '@react-oauth/google'; // Removed
 import { Mail, Lock, ArrowRight, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { API_URL } from '../config';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -141,7 +142,7 @@ const Login = () => {
                                 type="button"
                                 onClick={async () => {
                                     try {
-                                        const res = await fetch('https://modsserenterprisesbackend.onrender.com/api/auth/google/url');
+                                        const res = await fetch(`${API_URL}/auth/google/url`);
                                         const data = await res.json();
                                         window.location.href = data.data.url;
                                     } catch (err) {

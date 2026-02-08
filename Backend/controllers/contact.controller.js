@@ -123,6 +123,7 @@ exports.saveContact = async (req, res) => {
       console.log('📧 Sending email via Brevo...');
       await apiInstance.sendTransacEmail(sendSmtpEmail);
       console.log('✅ Email sent via Brevo');
+      console.log(`📨 Email sent successfully to ${email}`);
 
     } catch (emailError) {
       console.error('⚠️ Failed to send email via Brevo.');
@@ -136,7 +137,7 @@ exports.saveContact = async (req, res) => {
       // Continue execution to return success for the contact save, as the data is safe in DB
     }
 
-    console.log(`📨 Email sent successfully to ${email}`);
+
     res.status(200).json({ message: '✉️ Thank you for contacting Modasser Enterprises! Your inquiry has been received successfully — our team will respond shortly.' });
 
   } catch (error) {

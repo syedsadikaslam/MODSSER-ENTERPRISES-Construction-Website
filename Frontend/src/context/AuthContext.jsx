@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 // import { googleLogout, useGoogleLogin } from '@react-oauth/google'; // Removed
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const AuthContext = createContext();
 
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // Configure axios defaults
-    axios.defaults.baseURL = 'https://modsserenterprisesbackend.onrender.com/api'; 
+    axios.defaults.baseURL = API_URL;
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
