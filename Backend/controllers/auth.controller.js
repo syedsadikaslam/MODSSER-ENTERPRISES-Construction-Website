@@ -6,7 +6,7 @@ const client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
     // Use environment variable for callback URL or fallback to localhost
-    `${process.env.BACKEND_URL || 'http://localhost:3000'}/api/auth/google/callback`
+    `${process.env.BACKEND_URL || 'https://www.modsserenterprises.in'}/api/auth/google/callback`
 );
 
 const signToken = (id) => {
