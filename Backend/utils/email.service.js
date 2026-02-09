@@ -17,7 +17,7 @@ const sendEmail = async (options) => {
         sendSmtpEmail.htmlContent = options.html || `<html><body><p>${options.message}</p></body></html>`;
         sendSmtpEmail.sender = {
             name: "Modsser Enterprises",
-            email: process.env.FROM_EMAIL || "no-reply@modsserenterprises.in"
+            email: process.env.FROM_EMAIL || "mdsadiksadik464@gmail.com"
         };
         sendSmtpEmail.to = [{ email: options.email }];
 

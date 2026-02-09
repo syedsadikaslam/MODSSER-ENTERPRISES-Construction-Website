@@ -4,12 +4,13 @@ const User = require('../models/user.model');
 
 exports.createBooking = async (req, res) => {
     try {
-        const { serviceName, serviceId, date, address, notes, phone, projectType, budget, alternateContact } = req.body;
+        const { serviceName, serviceId, date, address, notes, phone, projectType, budget, alternateContact, name } = req.body;
 
         const newBooking = await Booking.create({
             user: req.user.id,
             serviceName,
             serviceId,
+            name,
             date,
             address,
             phone,
@@ -34,6 +35,21 @@ exports.createBooking = async (req, res) => {
             // Don't fail the booking if email fails, just log it
         }
 
+        // Send Admin Notification
+        const adminEmail = "mdsadiksadik464@gmail.com";
+        const adminMessage = `New Booking Request!\n\nUser: ${user.name} (${user.email})\nService: ${serviceName}\nType: ${projectType}\nDate: ${new Date(date).toLocaleDateString()}\nBudget: ${budget}\nPhone: ${phone}\nAddress: ${address}\n\nPlease check the admin panel for more details.`;
+
+        try {
+            await sendEmail({
+                email: adminEmail,
+                subject: `📅 New Booking: ${serviceName} - ${user.name}`,
+                message: adminMessage
+            });
+            console.log(`✅ Admin notification sent to ${adminEmail}`);
+        } catch (adminErr) {
+            console.error('Admin email send failed:', adminErr);
+        }
+
         res.status(201).json({
             status: 'success',
             data: {
@@ -51,6 +67,25 @@ exports.createBooking = async (req, res) => {
 exports.getUserBookings = async (req, res) => {
     try {
         const bookings = await Booking.find({ user: req.user.id }).sort({ createdAt: -1 });
+
+        res.status(200).json({
+            status: 'success',
+            results: bookings.length,
+            data: {
+                bookings
+            }
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err.message
+        });
+    }
+};
+
+exports.getAllBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find().populate('user', 'name email').sort({ createdAt: -1 });
 
         res.status(200).json({
             status: 'success',

@@ -14,6 +14,10 @@ const bookingSchema = new mongoose.Schema({
         type: String, // e.g., 'residential', 'commercial'
         required: [true, 'Service ID is required']
     },
+    name: {
+        type: String,
+        required: [true, 'Name is required']
+    },
     date: {
         type: Date,
         required: [true, 'Booking date is required']

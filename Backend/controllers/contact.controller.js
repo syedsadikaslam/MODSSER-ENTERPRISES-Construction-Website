@@ -137,6 +137,47 @@ exports.saveContact = async (req, res) => {
       // Continue execution to return success for the contact save, as the data is safe in DB
     }
 
+    // 📧 Send Admin Notification Email
+    try {
+        const adminEmail = "mdsadiksadik464@gmail.com";
+        const adminHtmlTemplate = `
+        <html>
+          <body style="font-family: Arial, sans-serif; background-color:#f5f7fa; margin:0; padding:0;">
+            <div style="background-color:#ffffff; padding:20px; border-radius:8px; width:100%; max-width:600px; margin:20px auto; border:1px solid #e1e1e1;">
+              <h2 style="color:#0a4ea0; margin-top:0;">New Contact Inquiry</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
+              <p><strong>Subject:</strong> ${subject}</p>
+              <div style="background-color:#f9f9f9; padding:15px; border-radius:4px; margin-top:10px;">
+                <p style="margin:0;"><strong>Message:</strong></p>
+                <p style="margin-top:5px; white-space: pre-wrap;">${message}</p>
+              </div>
+              <p style="font-size:12px; color:#888; margin-top:20px;">This email was sent from the Modsser Enterprises contact form.</p>
+            </div>
+          </body>
+        </html>
+        `;
+
+        if (process.env.BREVO_API_KEY) {
+             const apiInstance = new brevo.TransactionalEmailsApi();
+             apiInstance.authentications['apiKey'].apiKey = process.env.BREVO_API_KEY;
+
+             const sendSmtpEmail = new brevo.SendSmtpEmail();
+             sendSmtpEmail.to = [{ email: adminEmail, name: "Admin" }];
+             sendSmtpEmail.sender = { name: "Modsser Website", email: process.env.FROM_EMAIL || "no-reply@modsserenterprises.in" };
+             sendSmtpEmail.subject = `🔔 New Inquiry: ${subject}`;
+             sendSmtpEmail.htmlContent = adminHtmlTemplate;
+
+             console.log(`📧 Sending admin notification to ${adminEmail}...`);
+             await apiInstance.sendTransacEmail(sendSmtpEmail);
+             console.log('✅ Admin notification sent.');
+        }
+    } catch (adminEmailError) {
+        console.error('⚠️ Failed to send admin notification email:', adminEmailError.message);
+        // Don't fail request if admin email fails
+    }
+
 
     res.status(200).json({ message: '✉️ Thank you for contacting Modasser Enterprises! Your inquiry has been received successfully — our team will respond shortly.' });
 
