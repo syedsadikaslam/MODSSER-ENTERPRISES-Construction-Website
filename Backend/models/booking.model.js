@@ -37,8 +37,8 @@ const bookingSchema = new mongoose.Schema({
     },
     projectType: {
         type: String,
-        enum: ['Residential', 'Commercial', 'Renovation', 'Industrial', 'Quote', 'Other', 'residential', 'commercial', 'industrial', 'renovation', 'quote', 'other'],
-        default: 'Other'
+        enum: ['residential', 'commercial', 'industrial', 'renovation', 'quote', 'other'],
+        default: 'other'
     },
     budget: {
         type: String
