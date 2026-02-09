@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 import { Loader2, ShieldAlert, CheckCircle2, Clock, MapPin, Phone, User, Calendar, FileText, DollarSign, Download, Briefcase } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -26,10 +27,10 @@ const AdminDashboard = () => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const bookingsRes = await axios.get('http://localhost:3000/api/bookings/admin');
+            const bookingsRes = await axios.get(`${API_URL}/bookings/admin`);
             setBookings(bookingsRes.data.data.bookings);
 
-            const applicationsRes = await axios.get('http://localhost:3000/api/hiring/applications');
+            const applicationsRes = await axios.get(`${API_URL}/hiring/applications`);
             setApplications(applicationsRes.data);
         } catch (err) {
             setError('Failed to fetch data. Ensure you are an admin.');
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
 
     const handleStatusUpdate = async (id, newStatus) => {
         try {
-            await axios.patch(`http://localhost:3000/api/bookings/${id}/status`, { status: newStatus });
+            await axios.patch(`${API_URL}/bookings/${id}/status`, { status: newStatus });
             setBookings(prev => prev.map(b => b._id === id ? { ...b, status: newStatus } : b));
         } catch (err) {
             console.error("Failed to update status", err);
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
 
     const handleApplicationStatusUpdate = async (id, newStatus) => {
         try {
-            await axios.patch(`http://localhost:3000/api/hiring/applications/${id}/status`, { status: newStatus });
+            await axios.patch(`${API_URL}/hiring/applications/${id}/status`, { status: newStatus });
             setApplications(prev => prev.map(a => a._id === id ? { ...a, status: newStatus } : a));
         } catch (err) {
             console.error("Failed to update status", err);
@@ -270,7 +271,7 @@ const AdminDashboard = () => {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <a
-                                                    href={`http://localhost:3000/${app.resume}`}
+                                                    href={`${API_URL.replace('/api', '')}/${app.resume}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

@@ -5,6 +5,7 @@ import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import SEO from '../components/common/SEO';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const Careers = () => {
     const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ const Careers = () => {
         data.append('resume', resume);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/hiring/apply', data, {
+            const response = await axios.post(`${API_URL}/hiring/apply`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
