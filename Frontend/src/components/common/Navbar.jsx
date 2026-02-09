@@ -21,7 +21,13 @@ const Navbar = () => {
     { name: "Services", href: "services" },
     { name: "Projects", href: "projects" },
     { name: "About", href: "about" },
+    { name: "Careers", href: "/careers" }, // Updated to route instead of hash for full page
   ];
+
+  // Filter out Careers link if user is admin
+  const filteredNavLinks = user && user.role === 'admin'
+    ? navLinks.filter(link => link.name !== 'Careers')
+    : navLinks;
 
   return (
     <header className="fixed w-full z-[100] transition-all duration-500 top-0 left-0">
@@ -64,10 +70,10 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-10">
-            {navLinks.map((link) => (
+            {filteredNavLinks.map((link) => (
               <a
                 key={link.name}
-                href={`/#${link.href}`}
+                href={link.href.startsWith('/') ? link.href : `/#${link.href}`}
                 className="text-sm font-semibold text-gray-200 hover:text-white transition-all duration-300 relative group"
               >
                 {link.name}
@@ -110,10 +116,10 @@ const Navbar = () => {
             `}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-10">
-          {navLinks.map((link, idx) => (
+          {filteredNavLinks.map((link, idx) => (
             <a
               key={link.name}
-              href={`/#${link.href}`}
+              href={link.href.startsWith('/') ? link.href : `/#${link.href}`}
               onClick={() => setIsOpen(false)}
               className={`text-3xl font-bold text-white transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
               style={{ transitionDelay: `${idx * 100}ms` }}
@@ -126,7 +132,7 @@ const Navbar = () => {
             to={user && user.role === 'admin' ? "/admin" : (user ? "/profile" : "/login")}
             onClick={() => setIsOpen(false)}
             className={`text-3xl font-bold text-orange-500 transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-            style={{ transitionDelay: `${navLinks.length * 100}ms` }}
+            style={{ transitionDelay: `${filteredNavLinks.length * 100}ms` }}
           >
             {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
           </Link>

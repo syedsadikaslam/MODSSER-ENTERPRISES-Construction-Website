@@ -73,6 +73,12 @@ const bookingRoutes = require('./routes/booking.routes');
 app.use('/api/contacts', contactRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
+const hiringRoutes = require('./routes/hiring.routes');
+app.use('/api/hiring', hiringRoutes);
+
+// Serve uploaded files
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ✅ Start Server
 app.listen(PORT, () => {

@@ -15,7 +15,9 @@ import BookingPage from './pages/BookingPage';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import AuthCallback from './pages/AuthCallback';
+import Careers from './pages/Careers';
 import VoiceflowWidget from './components/common/VoiceflowWidget';
+import WhatsAppButton from './components/common/WhatsAppButton';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -81,12 +83,14 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/book" element={<BookingPage />} />
+                <Route path="/careers" element={<Careers />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
               </Routes>
 
               <VoiceflowWidget />
+              <WhatsAppButton />
             </motion.div>
           )}
         </AnimatePresence>

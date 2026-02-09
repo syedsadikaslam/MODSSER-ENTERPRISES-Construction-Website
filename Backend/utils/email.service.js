@@ -21,8 +21,6 @@ const sendEmail = async (options) => {
         };
         sendSmtpEmail.to = [{ email: options.email }];
 
-        // Optional: Reply To
-        // sendSmtpEmail.replyTo = { email: "contact@modsserenterprises.in", name: "Support" };
 
         console.log(`📧 Sending email via Brevo to ${options.email}...`);
         await apiInstance.sendTransacEmail(sendSmtpEmail);
@@ -30,9 +28,7 @@ const sendEmail = async (options) => {
 
     } catch (error) {
         console.error('❌ Failed to send email via Brevo:', error.body || error.message);
-        // We throw the error so the controller knows it failed, 
-        // OR we just log it if we don't want to block the flow.
-        // warning: The booking controller catches this, so throwing is fine.
+        
         throw new Error('Email sending failed');
     }
 };
