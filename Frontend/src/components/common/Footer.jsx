@@ -56,12 +56,6 @@ const Footer = () => {
                 {/* Bottom Section */}
                 <div className="flex flex-col items-center pt-8 border-t border-blue-900">
                     <div className="flex space-x-6 mb-6">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-blue-900">
-                            <FaGithub size={20} />
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-blue-900">
-                            <FaLinkedinIn size={20} />
-                        </a>
                         <a href="mailto:support@modsserenterprises.in" className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-blue-900">
                             <FaEnvelope size={20} />
                         </a>

@@ -20,6 +20,8 @@ import VoiceflowWidget from './components/common/VoiceflowWidget';
 import WhatsAppButton from './components/common/WhatsAppButton';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import FAQ from './pages/FAQ';
+import Support from './pages/Support';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -91,6 +93,8 @@ function App() {
                 <Route path="/auth/callback" element={<AuthCallback />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/support" element={<Support />} />
               </Routes>
 
               <VoiceflowWidget />
