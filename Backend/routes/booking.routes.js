@@ -10,5 +10,6 @@ router.use(protect);
 router.post('/', bookingController.createBooking);
 router.get('/', bookingController.getUserBookings);
 router.get('/admin', protect, restrictTo('admin'), bookingController.getAllBookings);
+router.patch('/:id/status', protect, restrictTo('admin'), bookingController.updateBookingStatus);
 
 module.exports = router;

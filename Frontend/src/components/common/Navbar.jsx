@@ -29,11 +29,10 @@ const Navbar = () => {
       <div
         className={`
                 mx-auto transition-all duration-500 ease-in-out
-                ${
-                  isScrolled
-                    ? "w-[95%] md:max-w-5xl mt-4 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl px-4 md:px-8 py-3 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
-                    : "w-full mt-0 bg-transparent px-5 md:px-10 py-6"
-                }
+                ${isScrolled
+            ? "w-[95%] md:max-w-5xl mt-4 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl px-4 md:px-8 py-3 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+            : "w-full mt-0 bg-transparent px-5 md:px-10 py-6"
+          }
             `}
       >
         <div className="flex justify-between items-center w-full">
@@ -78,10 +77,10 @@ const Navbar = () => {
 
             {/* Auth Button */}
             <Link
-              to={user ? "/profile" : "/login"}
+              to={user && user.role === 'admin' ? "/admin" : (user ? "/profile" : "/login")}
               className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 transform active:scale-95 shadow-lg shadow-white/5"
             >
-              {user ? "Profile" : "Login"}
+              {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
             </Link>
           </nav>
 
@@ -124,12 +123,12 @@ const Navbar = () => {
           ))}
 
           <Link
-            to={user ? "/profile" : "/login"}
+            to={user && user.role === 'admin' ? "/admin" : (user ? "/profile" : "/login")}
             onClick={() => setIsOpen(false)}
             className={`text-3xl font-bold text-orange-500 transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
             style={{ transitionDelay: `${navLinks.length * 100}ms` }}
           >
-            {user ? "Profile" : "Login"}
+            {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
           </Link>
         </div>
       </div>

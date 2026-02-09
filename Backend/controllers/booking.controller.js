@@ -101,3 +101,44 @@ exports.getAllBookings = async (req, res) => {
         });
     }
 };
+
+exports.updateBookingStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const booking = await Booking.findByIdAndUpdate(id, { status }, { new: true });
+
+        if (!booking) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'No booking found with that ID'
+            });
+        }
+
+        const user = await User.findById(booking.user);
+        const message = `Dear ${user.name},\n\nThe status of your booking for ${booking.serviceName} has been updated to: ${status.toUpperCase()}.\n\nIf you have any questions, please contact us.\n\nBest regards,\nModsser Enterprises`;
+
+        try {
+            await sendEmail({
+                email: user.email,
+                subject: `Booking Status Update: ${status.toUpperCase()}`,
+                message
+            });
+        } catch (err) {
+            console.error('Status update email failed:', err);
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                booking
+            }
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err.message
+        });
+    }
+};

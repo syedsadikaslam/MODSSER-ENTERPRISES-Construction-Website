@@ -33,6 +33,17 @@ const AdminDashboard = () => {
         }
     };
 
+    const handleStatusUpdate = async (id, newStatus) => {
+        try {
+            await axios.patch(`/bookings/${id}/status`, { status: newStatus });
+            // Update local state to reflect change immediately
+            setBookings(prev => prev.map(b => b._id === id ? { ...b, status: newStatus } : b));
+        } catch (err) {
+            console.error("Failed to update status", err);
+            alert("Failed to update status");
+        }
+    };
+
     if (authLoading || loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -90,13 +101,45 @@ const AdminDashboard = () => {
                                     <tr key={booking._id} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                ${booking.status === 'confirmed' ? 'bg-green-100 text-green-800' :
+                                                ${booking.status === 'confirmed' || booking.status === 'completed' ? 'bg-green-100 text-green-800' :
                                                     booking.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                                        'bg-gray-100 text-gray-800'}`}>
+                                                        booking.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+                                                            'bg-gray-100 text-gray-800'}`}>
                                                 {booking.status?.toUpperCase() || 'PENDING'}
                                             </span>
                                             <div className="text-xs text-gray-400 mt-2">
                                                 ID: {booking._id.slice(-6).toUpperCase()}
+                                            </div>
+
+                                            {/* Status Actions */}
+                                            <div className="mt-2 flex gap-1">
+                                                {booking.status !== 'confirmed' && booking.status !== 'completed' && (
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(booking._id, 'confirmed')}
+                                                        className="p-1 bg-green-50 text-green-600 rounded hover:bg-green-100 text-xs"
+                                                        title="Approve"
+                                                    >
+                                                        <CheckCircle2 size={14} />
+                                                    </button>
+                                                )}
+                                                {booking.status !== 'cancelled' && booking.status !== 'completed' && (
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(booking._id, 'cancelled')}
+                                                        className="p-1 bg-red-50 text-red-600 rounded hover:bg-red-100 text-xs"
+                                                        title="Cancel"
+                                                    >
+                                                        <ShieldAlert size={14} />
+                                                    </button>
+                                                )}
+                                                {booking.status === 'confirmed' && (
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(booking._id, 'completed')}
+                                                        className="p-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 text-xs"
+                                                        title="Complete"
+                                                    >
+                                                        <CheckCircle2 size={14} />
+                                                    </button>
+                                                )}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
