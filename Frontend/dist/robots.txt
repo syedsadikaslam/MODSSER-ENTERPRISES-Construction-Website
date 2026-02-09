@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://modsserenterprises.com/sitemap.xml
+Sitemap: https://www.modsserenterprises.in/sitemap.xml
