@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppButton = () => {
     const [isVisible, setIsVisible] = useState(true);
+    const location = useLocation();
+
+    // Only show on Home page ('/')
+    const isHomePage = location.pathname === '/';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,20 +20,36 @@ const WhatsAppButton = () => {
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        if (isHomePage) {
+            window.addEventListener('scroll', handleScroll);
+        }
+
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHomePage]);
+
+    if (!isHomePage) return null;
 
     return (
-        <a
-            href="https://wa.me/917254087502"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`fixed bottom-6 left-6 z-[1000] bg-green-500 hover:bg-green-600 text-white w-[45px] h-[45px] rounded-full shadow-lg transition-all duration-500 flex items-center justify-center transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
-            aria-label="Chat on WhatsApp"
-        >
-            <FaWhatsapp className="text-3xl" />
-        </a>
+        <AnimatePresence>
+            {isVisible && (
+                <motion.a
+                    href="https://wa.me/917254087502"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    drag
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 50 }}
+                    className="fixed bottom-6 left-6 z-[1000] bg-green-500 hover:bg-green-600 text-white w-[45px] h-[45px] rounded-full shadow-lg flex items-center justify-center cursor-move"
+                    aria-label="Chat on WhatsApp"
+                    style={{ touchAction: 'none' }} // Prevents scrolling while dragging on touch devices
+                >
+                    <FaWhatsapp className="text-2xl" />
+                </motion.a>
+            )}
+        </AnimatePresence>
     );
 };
 

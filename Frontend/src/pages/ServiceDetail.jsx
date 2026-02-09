@@ -60,9 +60,9 @@ const ServiceDetail = () => {
     return (
         <div className="bg-white min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900">
             <SEO
-                title={`${service.title} Services in Begusarai`}
+                title={`${service.title} Services in Begusarai, Bihar`}
                 description={service.subtitle}
-                keywords={`${service.title}, construction services, begusarai, bihar, modsser enterprises`}
+                keywords={`${service.title}, construction services, begusarai, bihar, india, modsser enterprises, best contractor`}
                 image={service.heroImage}
                 url={`/services/${type}`}
             />

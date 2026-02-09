@@ -1,71 +1,80 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaPaperPlane } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="bg-blue-950 text-white py-12">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-                    <div>
-                        <img src="/img/logo.png" height="60px" width="60px" alt="Modsser Enterprises logo footer version" className="mb-4" />
-                        <p className="mb-4">Modsser Enterprises is a premier construction company delivering exceptional quality and innovative solutions.</p>
-                        <div className="flex space-x-4">
-                            <a href="https://www.facebook.com/profile.php?id=100051867172293&viewas=100000686899395" className="text-white hover:text-orange-500 transition">
-                                <FaFacebookF />
-                            </a>
-                            <a href="https://x.com/imsadikaslam?s=09" className="text-white hover:text-orange-500 transition">
-                                <FaTwitter />
-                            </a>
-                            <a href="md-sadik-9104a2252" className="text-white hover:text-orange-500 transition">
-                                <FaLinkedinIn />
-                            </a>
-                            <a href="https://www.instagram.com/syed_sadik2001/" className="text-white hover:text-orange-500 transition">
-                                <FaInstagram />
-                            </a>
+        <footer className="bg-white text-gray-900 border-t border-gray-100 pt-16 pb-8">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
+                    {/* Brand Section */}
+                    <div className="col-span-1">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            {/* Optional Logo if needed, otherwise text */}
+                            Modsser Enterprises
+                        </h3>
+                        <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                            Modsser Enterprises is a premier construction company delivering exceptional quality and innovative solutions. Building your vision into reality.
+                        </p>
+                    </div>
+
+                    {/* Links Columns */}
+                    <div className="col-span-1 lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
+                        {/* Explore Column */}
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-6">Explore</h4>
+                            <ul className="space-y-4 text-sm text-gray-500">
+                                <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
+                                <li><Link to="/services/residential" className="hover:text-blue-600 transition-colors">Services</Link></li>
+                                <li><Link to="/projects" className="hover:text-blue-600 transition-colors">Projects</Link></li>
+                                <li><Link to="/careers" className="hover:text-blue-600 transition-colors">Careers</Link></li>
+                            </ul>
                         </div>
-                    </div>
 
-                    <div>
-                        <h4 className="text-lg font-bold mb-6">QUICK LINKS</h4>
-                        <ul className="space-y-3">
-                            <li><a href="#home" className="hover:text-orange-500 transition">Home</a></li>
-                            <li><a href="#services" className="hover:text-orange-500 transition">Services</a></li>
-                            <li><a href="#projects" className="hover:text-orange-500 transition">Projects</a></li>
-                            <li><a href="#about" className="hover:text-orange-500 transition">About Us</a></li>
-                            <li><a href="#contact" className="hover:text-orange-500 transition">Contact</a></li>
-                        </ul>
-                    </div>
+                        {/* Company Column */}
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-6">Company</h4>
+                            <ul className="space-y-4 text-sm text-gray-500">
+                                <li><Link to="/about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
+                                <li><a href="/#contact" className="hover:text-blue-600 transition-colors">Contact</a></li>
+                                <li><Link to="/faq" className="hover:text-blue-600 transition-colors">FAQ</Link></li>
+                                <li><Link to="/support" className="hover:text-blue-600 transition-colors">Support</Link></li>
+                            </ul>
+                        </div>
 
-                    <div>
-                        <h4 className="text-lg font-bold mb-6">SERVICES</h4>
-                        <ul className="space-y-3">
-                            <li><a href="/services/residential" className="hover:text-orange-500 transition">Residential Construction</a></li>
-                            <li><a href="/services/commercial" className="hover:text-orange-500 transition">Commercial Construction</a></li>
-                            <li><a href="/services/industrial" className="hover:text-orange-500 transition">Industrial Construction</a></li>
-                            <li><a href="/services/renovation" className="hover:text-orange-500 transition">Renovation & Remodeling</a></li>
-                            <li><a href="/services/civileng" className="hover:text-orange-500 transition">Civil Infrastructure</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-lg font-bold mb-6">NEWSLETTER</h4>
-                        <p className="mb-4">Subscribe to our newsletter for the latest updates and projects.</p>
-                        <form className="flex">
-                            <input type="email" placeholder="Your Email" className="px-4 py-3 text-gray-900 rounded-l-lg w-full focus:outline-none" />
-                            <button type="submit" className="bg-orange-500 hover:bg-orange-600 px-4 rounded-r-lg transition">
-                                <FaPaperPlane className="text-white" />
-                            </button>
-                        </form>
+                        {/* Legal Column */}
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-6">Legal</h4>
+                            <ul className="space-y-4 text-sm text-gray-500">
+                                <li><Link to="/privacy-policy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
+                                <li><Link to="/terms-of-service" className="hover:text-blue-600 transition-colors">Terms of Service</Link></li>
+                                {/* Removed Refund as likely not applicable, removed Sitemap */}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div className="border-t border-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p>© 2024 Modsser Enterprises. All Rights Reserved.</p>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-orange-500 transition">Privacy Policy</a>
-                        <a href="#" className="hover:text-orange-500 transition">Terms of Service</a>
-                        <a href="#" className="hover:text-orange-500 transition">Sitemap</a>
+                {/* Bottom Section */}
+                <div className="flex flex-col items-center pt-8 border-t border-gray-100">
+                    <div className="flex space-x-6 mb-6">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-50">
+                            <FaGithub size={20} />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-50">
+                            <FaLinkedinIn size={20} />
+                        </a>
+                        <a href="mailto:support@modsserenterprises.in" className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-50">
+                            <FaEnvelope size={20} />
+                        </a>
+                        {/* Keeping original social links if user prefers, but using the style form the image (icons only at bottom) */}
+                        <a href="https://www.facebook.com/profile.php?id=100051867172293&viewas=100000686899395" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-50">
+                            <FaFacebookF size={20} />
+                        </a>
+                        <a href="https://www.instagram.com/syed_sadik2001/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-50">
+                            <FaInstagram size={20} />
+                        </a>
                     </div>
+                    <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Modsser Enterprises. All rights reserved.</p>
                 </div>
             </div>
         </footer>

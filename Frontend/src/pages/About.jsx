@@ -11,8 +11,8 @@ const About = () => {
     return (
         <>
             <SEO
-                title="About Us - Modsser Enterprises"
-                description="Learn about Modsser Enterprises, our history, mission, vision, and the team driving excellence in construction services in Begusarai, Bihar."
+                title="About Us - Top Construction Team in Bihar & India"
+                description="Learn about Modsser Enterprises, our history, and the team driving excellence in construction services across Begusarai, Bihar, and India."
                 url="/about"
             />
             <Navbar />
