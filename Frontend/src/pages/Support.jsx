@@ -1,44 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import SEO from '../components/common/SEO';
-import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { Mail, Phone, MapPin, MessageSquare, Clock } from 'lucide-react';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Support = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
-    const [loading, setLoading] = useState(false);
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        // Simulate API call or replace with actual endpoint
-        try {
-            // Placeholder for actual support API
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            // You can connect this to your existing contact API if desired:
-            // await axios.post(`${API_URL}/contact`, formData); 
-
-            toast.success("Support request sent successfully! We'll get back to you soon.");
-            setFormData({ name: '', email: '', subject: '', message: '' });
-        } catch (error) {
-            toast.error("Failed to send request. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
     return (
         <>
             <SEO
@@ -50,143 +18,85 @@ const Support = () => {
             <Navbar />
             <ToastContainer position="bottom-right" />
 
-            <div className="bg-white min-h-screen pt-24 pb-16">
-                {/* Header */}
-                <div className="bg-blue-950 text-white py-16 mb-16">
+            <div className="bg-white min-h-screen">
+                {/* Hero Header Section */}
+                <div className="bg-blue-950 text-white pt-32 pb-20 md:pt-40 md:pb-32">
                     <div className="container mx-auto px-4 text-center">
-                        <MessageSquare className="w-16 h-16 mx-auto mb-6 text-orange-500 opacity-90" />
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">How can we help you?</h1>
-                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                            Our support team is here to assist you with any questions, issues, or feedback you may have.
+                        <div className="inline-block p-4 bg-orange-500/10 rounded-2xl mb-6">
+                            <MessageSquare className="w-12 h-12 text-orange-500" />
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+                            How can we <span className="text-orange-500">help</span> you?
+                        </h1>
+                        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                            Our dedicated support team is ready to assist you. Reach out through any of the channels below.
                         </p>
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 max-w-6xl">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-                        {/* Contact Information */}
-                        <div className="space-y-8">
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Support</h2>
-                                <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                                    We prefer to answer your questions via email or phone. Our team is available Monday to Saturday, 9:00 AM to 8:00 PM.
-                                </p>
+                {/* Contact Cards Section */}
+                <div className="container mx-auto px-4 -mt-12 mb-20">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        
+                        {/* Phone Card */}
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center text-center transform transition-transform hover:-translate-y-2">
+                            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                                <Phone className="w-8 h-8 text-blue-600" />
                             </div>
-
-                            <div className="bg-gray-50 p-8 rounded-2xl space-y-6 shadow-sm border border-gray-100">
-                                <div className="flex items-start">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mr-4">
-                                        <Phone className="w-6 h-6 text-blue-600" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-lg font-bold text-gray-900">Phone Support</h3>
-                                        <p className="text-gray-600 mt-1">+91 72540 87502</p>
-                                        <p className="text-sm text-gray-500 mt-1">Mon-Sat 9am-8pm</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start">
-                                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center shrink-0 mr-4">
-                                        <Mail className="w-6 h-6 text-orange-600" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-lg font-bold text-gray-900">Email Us</h3>
-                                        <p className="text-gray-600 mt-1">support@modsserenterprises.in</p>
-                                        <p className="text-sm text-gray-500 mt-1">We usually reply within 24 hours</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start">
-                                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center shrink-0 mr-4">
-                                        <MapPin className="w-6 h-6 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-lg font-bold text-gray-900">Head Office</h3>
-                                        <p className="text-gray-600 mt-1">Near Kali Sthan, Begusarai</p>
-                                        <p className="text-gray-600">Bihar, India - 851101</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Phone Support</h3>
+                            <p className="text-gray-600 mb-4">Direct talk with our experts</p>
+                            <a href="tel:+917254087502" className="text-lg font-semibold text-blue-600 hover:text-blue-700">
+                                +91 72540 87502
+                            </a>
                         </div>
 
-                        {/* Support Form */}
-                        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                                            placeholder="John Doe"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">Your Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                                            placeholder="john@example.com"
-                                        />
-                                    </div>
-                                </div>
+                        {/* Email Card */}
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center text-center transform transition-transform hover:-translate-y-2">
+                            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                                <Mail className="w-8 h-8 text-orange-600" />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+                            <p className="text-gray-600 mb-4">For detailed inquiries</p>
+                            <a href="mailto:support@modsserenterprises.in" className="text-lg font-semibold text-orange-600 hover:text-orange-700 break-all">
+                                support@modsserenterprises.in
+                            </a>
+                        </div>
 
+                        {/* Visit Card */}
+                        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center text-center transform transition-transform hover:-translate-y-2">
+                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                                <MapPin className="w-8 h-8 text-green-600" />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Office Visit</h3>
+                            <p className="text-gray-600 mb-2">Near Kali Sthan, Begusarai</p>
+                            <p className="text-gray-600 font-medium">Bihar, India - 851101</p>
+                        </div>
+                    </div>
+
+                    {/* Additional Info Section */}
+                    <div className="mt-16 max-w-4xl mx-auto bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="flex items-center gap-6">
+                                <div className="bg-white p-4 rounded-xl shadow-sm">
+                                    <Clock className="w-10 h-10 text-blue-950" />
+                                </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
-                                    <select
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                                    >
-                                        <option value="">Select a topic</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="project">Project Support</option>
-                                        <option value="billing">Billing & Payments</option>
-                                        <option value="feedback">Feedback</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    <h4 className="text-2xl font-bold text-gray-900">Working Hours</h4>
+                                    <p className="text-gray-600 text-lg">Monday to Saturday: 9:00 AM - 8:00 PM</p>
+                                    <p className="text-orange-600 font-medium mt-1">Closed on Sundays & Public Holidays</p>
                                 </div>
-
-                                <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                                    <textarea
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        rows="5"
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
-                                        placeholder="How can we help you?"
-                                    ></textarea>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={loading}
-                                    className={`w-full py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
-                                >
-                                    {loading ? 'Sending...' : (
-                                        <>
-                                            Send Message <Send className="w-5 h-5 ml-2" />
-                                        </>
-                                    )}
-                                </button>
-                            </form>
+                            </div>
+                            <button 
+                                onClick={() => window.location.href = 'tel:+917254087502'}
+                                className="w-full md:w-auto px-8 py-4 bg-blue-950 text-white font-bold rounded-xl hover:bg-blue-900 transition-colors shadow-lg"
+                            >
+                                Call Now
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <Footer />
         </>
     );
