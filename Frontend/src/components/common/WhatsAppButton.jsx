@@ -42,7 +42,7 @@ const WhatsAppButton = () => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 50 }}
-                    className="fixed bottom-6 left-6 z-[1000] bg-green-500 hover:bg-green-600 text-white w-[45px] h-[45px] rounded-full shadow-lg flex items-center justify-center cursor-move"
+                    className="fixed bottom-6 left-6 z-[1000] bg-green-500 hover:bg-green-600 text-white w-[45px] h-[45px] rounded-full shadow-lg flex items-center justify-center cursor-move whatsapp-float-btn"
                     aria-label="Chat on WhatsApp"
                     style={{ touchAction: 'none' }} // Prevents scrolling while dragging on touch devices
                 >

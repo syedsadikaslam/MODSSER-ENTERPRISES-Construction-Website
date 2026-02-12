@@ -14,10 +14,11 @@ body {
     overflow-x: hidden;
 }
 
-html, body {
+html,
+body {
     max-width: 100%;
-    overflow-x: hidden; 
-    background-color: var(--dark); 
+    overflow-x: hidden;
+    background-color: var(--dark);
 }
 
 .hero-section {
@@ -33,32 +34,35 @@ html, body {
 }
 
 @keyframes changeBg {
+
     /* Slide 1: Aapki Purani Image 1 */
-    0%, 100% {
+    0%,
+    100% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('/img/background/backg1.JPG') no-repeat center center/cover;
+            url('/img/background/backg1.JPG') no-repeat center center/cover;
         background-position: 0% 50%;
     }
 
     /* Slide 2: Aapki Purani Image 2 */
     12.5% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('/img/background/backg2.png') no-repeat center center/cover;
+            url('/img/background/backg2.png') no-repeat center center/cover;
         background-position: 100% 50%;
-        transform: scale(1.05); /* Halka zoom effect */
+        transform: scale(1.05);
+        /* Halka zoom effect */
     }
 
     /* Slide 3: Aapki Purani Image 3 */
     25% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('/img/background/backg3.png') no-repeat center center/cover;
+            url('/img/background/backg3.png') no-repeat center center/cover;
         background-position: 50% 50%;
     }
 
     /* Slide 4: Aapki Purani Image 4 */
     37.5% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('/img/background/backg4.png') no-repeat center center/cover;
+            url('/img/background/backg4.png') no-repeat center center/cover;
         background-position: 0% 50%;
         transform: scale(1.1);
     }
@@ -66,14 +70,14 @@ html, body {
     /* Slide 5: Modern Architecture */
     50% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
+            url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
         background-position: 100% 50%;
     }
 
     /* Slide 6: Skyscraper Under Construction */
     62.5% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
+            url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
         background-position: 50% 50%;
         transform: scale(1.05);
     }
@@ -81,9 +85,9 @@ html, body {
     /* Slide 7: Urban Planning / Structure */
     75% {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop');
+            url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop');
         background-position: 0% 50%;
-    }   
+    }
 }
 
 .nav-scroll {
@@ -249,4 +253,11 @@ html, body {
 .container input:checked+.checkmark span:nth-child(3) {
     transform: translateX(-50px);
     opacity: 0;
+}
+
+/* Hide Chat Widgets when Mobile Nav is Open */
+body.mobile-nav-open .whatsapp-float-btn,
+body.mobile-nav-open #voiceflow-chat,
+body.mobile-nav-open .vfrc-widget--chat {
+    display: none !important;
 }

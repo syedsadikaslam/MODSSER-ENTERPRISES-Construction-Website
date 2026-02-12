@@ -6,13 +6,19 @@ import { API_URL } from '../config';
 import { Loader2, ShieldAlert, CheckCircle2, Clock, MapPin, Phone, User, Calendar, FileText, DollarSign, Download, Briefcase } from 'lucide-react';
 
 const AdminDashboard = () => {
-    const { user, loading: authLoading } = useAuth();
+
     const [bookings, setBookings] = useState([]);
     const [applications, setApplications] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [activeTab, setActiveTab] = useState('bookings'); // 'bookings' or 'careers'
     const navigate = useNavigate();
+    const { user, loading: authLoading, logout } = useAuth(); // Destructure logout from useAuth
+
+    const handleLogout = async () => {
+        await logout();
+        navigate('/login');
+    };
 
     useEffect(() => {
         if (!authLoading) {
@@ -96,7 +102,13 @@ const AdminDashboard = () => {
                     </div>
                     <div className="mt-4 md:mt-0 flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                         <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                        <span className="text-sm font-medium text-gray-700">Admin: {user?.name}</span>
+                        <span className="text-sm font-medium text-gray-700 mr-4">Admin: {user?.name}</span>
+                        <button
+                            onClick={handleLogout}
+                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-bold transition-colors"
+                        >
+                            Logout
+                        </button>
                     </div>
                 </header>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Twitter, ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,6 +21,18 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Toggle body class for mobile menu
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('mobile-nav-open');
+    } else {
+      document.body.classList.remove('mobile-nav-open');
+    }
+    return () => {
+      document.body.classList.remove('mobile-nav-open');
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { name: "Home", href: "home" },
@@ -94,14 +107,7 @@ const Navbar = () => {
               {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
             </Link>
 
-            {user && (
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-red-600 transition-all duration-300 transform active:scale-95 shadow-lg shadow-red-500/20"
-              >
-                Logout
-              </button>
-            )}
+
           </nav>
 
           {/* Premium Mobile Trigger: Iska gap justify-between se auto-manage hoga */}
@@ -122,47 +128,80 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Premium Mobile Overlay */}
+      {/* Mobile Menu Backdrop */}
       <div
-        className={`
-                fixed inset-0 bg-black/95 backdrop-blur-2xl transition-all duration-700 md:hidden z-[-1]
-                ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"}
-            `}
+        className={`fixed inset-0 z-[140] bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Side Drawer */}
+      <div
+        className={`fixed top-0 right-0 z-[150] w-[75%] max-w-sm h-full bg-zinc-950 border-l border-white/10 shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-10">
-          {filteredNavLinks.map((link, idx) => (
-            <a
-              key={link.name}
-              href={link.href.startsWith('/') ? link.href : `/#${link.href}`}
-              onClick={() => setIsOpen(false)}
-              className={`text-3xl font-bold text-white transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-              style={{ transitionDelay: `${idx * 100}ms` }}
-            >
-              {link.name}
-            </a>
-          ))}
-
-          <Link
-            to={user && user.role === 'admin' ? "/admin" : (user ? "/profile" : "/login")}
-            onClick={() => setIsOpen(false)}
-            className={`text-3xl font-bold text-orange-500 transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-            style={{ transitionDelay: `${filteredNavLinks.length * 100}ms` }}
-          >
-            {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
-          </Link>
-
-          {user && (
+        <div className="flex flex-col h-full">
+          {/* Drawer Header: Logo & Close */}
+          <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="flex items-center gap-3">
+              <img src="/img/logo.png" alt="Modsser" className="w-10 h-10 object-contain" />
+              <div className="flex flex-col">
+                <h2 className="text-xl font-black text-white tracking-[1px] leading-none mb-1">
+                  MOD<span className="text-orange-500">SSER</span>
+                </h2>
+                <div className="flex items-center gap-1">
+                  <span className="h-[2px] w-3 bg-orange-500"></span>
+                  <span className="text-[10px] font-bold text-gray-400 tracking-[0.2em] uppercase">
+                    Enterprises
+                  </span>
+                </div>
+              </div>
+            </div>
             <button
-              onClick={() => {
-                setIsOpen(false);
-                handleLogout();
-              }}
-              className={`text-3xl font-bold text-red-500 transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-              style={{ transitionDelay: `${(filteredNavLinks.length + 1) * 100}ms` }}
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
             >
-              Logout
+              <X size={28} />
             </button>
-          )}
+          </div>
+
+          {/* Navigation Links: Clean Vertical List */}
+          <div className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
+            <Link
+              to={user && user.role === 'admin' ? "/admin" : (user ? "/profile" : "/login")}
+              onClick={() => setIsOpen(false)}
+              className="block text-xl font-bold text-white hover:text-orange-500 transition-colors"
+            >
+              {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
+            </Link>
+
+            <div className="w-10 h-[1px] bg-white/20 my-2"></div>
+
+            {filteredNavLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href.startsWith('/') ? link.href : `/#${link.href}`}
+                onClick={() => setIsOpen(false)}
+                className="block text-xl font-medium text-gray-300 hover:text-orange-500 hover:translate-x-2 transition-all duration-300"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Footer: Social Icons */}
+          <div className="p-8 border-t border-white/10 bg-zinc-900/50">
+            <div className="flex justify-center gap-8">
+              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+                <a key={i} href="#" className="text-gray-400 hover:text-orange-500 hover:scale-110 transition-all">
+                  <Icon size={24} />
+                </a>
+              ))}
+            </div>
+            <p className="text-center text-xs text-gray-500 mt-6 tracking-widest uppercase">
+              © 2026 Modsser Enterprises
+            </p>
+          </div>
         </div>
       </div>
     </header>
