@@ -168,7 +168,9 @@ exports.googleAuthCallback = async (req, res) => {
 exports.logout = (req, res) => {
     res.cookie('jwt', 'loggedout', {
         expires: new Date(Date.now() + 10 * 1000),
-        httpOnly: true
+        httpOnly: true,
+        secure: true, // Crucial for HTTPS/Cross-site
+        sameSite: 'none' // Crucial for Cross-site
     });
     res.status(200).json({ status: 'success' });
 };

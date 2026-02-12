@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, keywords, image, url, schema }) => {
     const siteTitle = "Modsser Enterprises";
-    const defaultDescription = "Best construction company in Begusarai, Bihar, and India. We deliver premier residential, commercial, and industrial construction services with uncompromising quality.";
-    const defaultKeywords = "construction company, begusarai, bihar, india, best construction company in bihar, top contractors india, residential, commercial, civil engineering, modsser enterprises";
+    const defaultDescription = "Top Construction Company in Begusarai, Bihar & India. Modsser Enterprises delivers premier residential, commercial, and interior design services. Rated as the best construction company for quality and reliability.";
+    const defaultKeywords = "top construction company in begusarai bihar, top construction company in india, best construction company in begusarai, civil contractor in begusarai, home construction begusarai, best interior designer in bihar, modsser enterprises";
     const siteUrl = "https://www.modsserenterprises.in";
     const defaultImage = `${siteUrl}/img/logo.png`;
 
@@ -13,6 +13,8 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
         "@context": "https://schema.org",
         "@type": "ConstructionBusiness",
         "name": "Modsser Enterprises",
+        "alternateName": ["Top Construction Company in Begusarai", "Best Construction Company in Bihar", "Top Construction Company in India"],
+        "description": "Top Construction Company in Begusarai, Bihar & India. Premier residential, commercial, and industrial construction services.",
         "image": defaultImage,
         "@id": siteUrl,
         "url": siteUrl,
@@ -67,7 +69,7 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
     return (
         <Helmet>
             {/* Standard Metadata */}
-            <title>{title ? `${title} | ${siteTitle}` : `${siteTitle} - Best Construction Company in Begusarai, Bihar & India`}</title>
+            <title>{title ? `${title} | ${siteTitle}` : `${siteTitle} - Top Construction Company in Begusarai, Bihar & India`}</title>
             <meta name="description" content={description || defaultDescription} />
             <meta name="keywords" content={keywords || defaultKeywords} />
             <link rel="canonical" href={url ? `${siteUrl}${url}` : siteUrl} />
@@ -75,7 +77,7 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content={url ? `${siteUrl}${url}` : siteUrl} />
-            <meta property="og:title" content={title ? `${title} | ${siteTitle}` : `${siteTitle} - Best Construction Company in Bihar & India`} />
+            <meta property="og:title" content={title ? `${title} | ${siteTitle}` : `${siteTitle} - Top Construction Company in Bihar & India`} />
             <meta property="og:description" content={description || defaultDescription} />
             <meta property="og:image" content={image || defaultImage} />
 

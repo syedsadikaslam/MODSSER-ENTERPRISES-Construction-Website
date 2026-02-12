@@ -5,8 +5,13 @@ import { useAuth } from "../../context/AuthContext";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,6 +93,15 @@ const Navbar = () => {
             >
               {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
             </Link>
+
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-red-600 transition-all duration-300 transform active:scale-95 shadow-lg shadow-red-500/20"
+              >
+                Logout
+              </button>
+            )}
           </nav>
 
           {/* Premium Mobile Trigger: Iska gap justify-between se auto-manage hoga */}
@@ -136,6 +150,19 @@ const Navbar = () => {
           >
             {user && user.role === 'admin' ? "Admin Panel" : (user ? "Profile" : "Login")}
           </Link>
+
+          {user && (
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                handleLogout();
+              }}
+              className={`text-3xl font-bold text-red-500 transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+              style={{ transitionDelay: `${(filteredNavLinks.length + 1) * 100}ms` }}
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </header>
