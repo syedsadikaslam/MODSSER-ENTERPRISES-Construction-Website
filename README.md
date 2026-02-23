@@ -97,5 +97,5 @@ Distrubuted under the **ISC License**. See `LICENSE` for more information.
 
 ---
 <p align="center">
-  <b>Built with ❤️ by MODSSER ENTERPRISES Team</b>
+  <b>Built with ❤️ by Sadik</b>
 </p>
