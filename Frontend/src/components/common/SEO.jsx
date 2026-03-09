@@ -72,6 +72,9 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
             <title>{title ? `${title} | ${siteTitle}` : `${siteTitle} - Top Construction Company in Begusarai, Bihar & India`}</title>
             <meta name="description" content={description || defaultDescription} />
             <meta name="keywords" content={keywords || defaultKeywords} />
+            <meta name="application-name" content={siteTitle} />
+            <meta name="apple-mobile-web-app-title" content={siteTitle} />
+            <meta property="og:site_name" content={siteTitle} />
             <link rel="canonical" href={url ? `${siteUrl}${url}` : siteUrl} />
 
             {/* Open Graph / Facebook */}
@@ -91,6 +94,15 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
             {/* Schema Markup */}
             <script type="application/ld+json">
                 {JSON.stringify(schema || structuredData)}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Modsser Enterprises",
+                    "alternateName": ["Modsser Enterprises Begusarai", "Top Construction Company Begusarai"],
+                    "url": "https://www.modsserenterprises.in/"
+                })}
             </script>
         </Helmet>
     );
