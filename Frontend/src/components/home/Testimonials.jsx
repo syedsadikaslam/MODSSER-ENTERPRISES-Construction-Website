@@ -3,29 +3,125 @@ import { FaStar, FaQuoteRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const testimonials = [
-    {
-        name: 'Mosaddik',
-        role: 'Civil Engineer, L&T',
-        img: '/img/Testimonials/Mosaddik.jpg',
-        quote: 'Modsser Enterprises delivered our project ahead of schedule. Their attention to detail was exceptional.'
+   {
+        name: 'Amit Vikram',
+        role: 'Project Manager, Amara Raja Infra',
+        img: 'https://i.pravatar.cc/150?u=amit',
+        quote: 'The quality of work from Modsser Enterprises is exceptional. Their performance on the Adani BOP Raipur project was truly commendable.'
     },
     {
-        name: 'Mojakker',
-        role: 'Site Incharge, IOCL',
-        img: '/img/Testimonials/Mojakker.png',
-        quote: 'Building our dream home was a fantastic experience. They kept us informed throughout the process.'
+        name: 'Sanjeev Kumar',
+        role: 'Senior Engineer, L&T Construction',
+        img: 'https://i.pravatar.cc/150?u=sanjeev',
+        quote: 'Their technical team is highly committed to safety and structural integrity. Professionalism at its best in every phase.'
     },
     {
-        name: 'Sadik',
-        role: 'Data Analyst, Accenture',
-        img: '/img/Testimonials/Sadik.png',
-        quote: "Their team handled complex requirements perfectly. We've already contracted them for our next expansion."
+        name: 'Priya Das',
+        role: 'Architectural Consultant',
+        img: 'https://i.pravatar.cc/150?u=priya',
+        quote: 'The finish and detailing in their masonry and plastering work are top-notch. Highly recommended for large-scale infrastructure.'
     },
     {
-        name: 'Rahul Sharma',
-        role: 'Structural Consultant',
-        img: '/img/Testimonials/Mosaddik.jpg',
-        quote: 'The level of professionalism and technical expertise shown by them is truly world-class.'
+        name: 'Rajesh Mehra',
+        role: 'Site Supervisor, TATA Projects',
+        img: 'https://i.pravatar.cc/150?u=rajesh',
+        quote: 'Modsser Enterprises delivered complex painting works within tight deadlines. Their workforce management is excellent.'
+    },
+    {
+        name: 'Vikram Singh',
+        role: 'Contract Manager, NHAI',
+        img: 'https://i.pravatar.cc/150?u=vikram',
+        quote: 'Transparent billing and high-quality material usage make them a reliable partner for government infrastructure projects.'
+    },
+    {
+        name: 'Neha Kapoor',
+        role: 'Interior Designer',
+        img: 'https://i.pravatar.cc/150?u=neha',
+        quote: 'Working with them on commercial spaces was a breeze. They understand modern aesthetics and structural needs perfectly.'
+    },
+    {
+        name: 'Abdul Kareem',
+        role: 'Procurement Head, Reliance Power',
+        img: 'https://i.pravatar.cc/150?u=kareem',
+        quote: 'Their quotation process and post-project support are very impressive. For reliability, Modsser Enterprises is the best.'
+    },
+    {
+        name: 'Suresh Raina',
+        role: 'Quality Assurance, Shapoorji Pallonji',
+        img: 'https://i.pravatar.cc/150?u=suresh',
+        quote: 'Zero compromise on quality standards. They strictly follow all IS codes and safety protocols on every construction site.'
+    },
+    {
+        name: 'Deepak Chawla',
+        role: 'Real Estate Developer',
+        img: 'https://i.pravatar.cc/150?u=deepak',
+        quote: 'Modsser Enterprises built our residential complex with great efficiency. Their cost-effective solutions saved us 15% on budget.'
+    },
+    {
+        name: 'Anjali Sharma',
+        role: 'Civil Consultant, Bihar Govt',
+        img: 'https://i.pravatar.cc/150?u=anjali',
+        quote: 'Their expertise in road and bridge construction is highly impressive. They are a dedicated team of professionals.'
+    },
+    {
+        name: 'Arun Verma',
+        role: 'Safety Officer, JMC Projects',
+        img: 'https://i.pravatar.cc/150?u=arun',
+        quote: 'Site safety is their top priority. We never had a single compliance issue while working with Modsser Enterprises.'
+    },
+    {
+        name: 'Tanveer Alam',
+        role: 'Electrical Contractor',
+        img: 'https://i.pravatar.cc/150?u=tanveer',
+        quote: 'Great coordination between different trade teams. They make the construction site environment highly productive.'
+    },
+    {
+        name: 'Rohan Gupta',
+        role: 'Managing Director, RG Homes',
+        img: 'https://i.pravatar.cc/150?u=rohan',
+        quote: 'From foundation to finishing, their end-to-end construction services are the best in the industry.'
+    },
+    {
+        name: 'Meera Iyer',
+        role: 'Landscape Architect',
+        img: 'https://i.pravatar.cc/150?u=meera',
+        quote: 'They executed our complex landscape structural designs with absolute precision. Very happy with the final outcome.'
+    },
+    {
+        name: 'Karan Malhotra',
+        role: 'Operations Head, GMR Group',
+        img: 'https://i.pravatar.cc/150?u=karan',
+        quote: 'Their ability to scale manpower according to project needs is what sets them apart from other contractors.'
+    },
+    {
+        name: 'Sameer Sheikh',
+        role: 'Structural Engineer',
+        img: 'https://i.pravatar.cc/150?u=sameer',
+        quote: 'Detailed planning and perfect execution. Modsser Enterprises is a brand you can trust for long-term durability.'
+    },
+    {
+        name: 'Pooja Hegde',
+        role: 'Planning Engineer, Afcons',
+        img: 'https://i.pravatar.cc/150?u=pooja',
+        quote: 'Resource allocation and daily reporting from their site team are very professional and helpful for tracking progress.'
+    },
+    {
+        name: 'Manish Pandey',
+        role: 'Facility Manager, IT Park',
+        img: 'https://i.pravatar.cc/150?u=manish',
+        quote: 'Extremely satisfied with the renovation work done by their team. They maintained a very clean and fast workflow.'
+    },
+    {
+        name: 'Sunil Gavaskar',
+        role: 'Technical Lead, IRCON',
+        img: 'https://i.pravatar.cc/150?u=sunil',
+        quote: 'Their understanding of heavy machinery and earthmoving works is quite advanced. Great results every single time.'
+    },
+    {
+        name: 'Ishaan Khattar',
+        role: 'Urban Planner',
+        img: 'https://i.pravatar.cc/150?u=ishaan',
+        quote: 'Modsser Enterprises contributes significantly to sustainable building practices. They are truly a forward-thinking company.'
     }
 ];
 
