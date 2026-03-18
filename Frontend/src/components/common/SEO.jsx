@@ -69,7 +69,7 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
     return (
         <Helmet>
             {/* Standard Metadata */}
-            <title>{title ? `${title} | ${siteTitle}` : `${siteTitle} - Top Construction Company in Begusarai, Bihar & India`}</title>
+            <title>{title ? `${title} | ${siteTitle}` : `${siteTitle}: Best Construction Company in Begusarai, Bihar & India`}</title>
             <meta name="description" content={description || defaultDescription} />
             <meta name="keywords" content={keywords || defaultKeywords} />
             <meta name="application-name" content={siteTitle} />
@@ -80,7 +80,7 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content={url ? `${siteUrl}${url}` : siteUrl} />
-            <meta property="og:title" content={title ? `${title} | ${siteTitle}` : `${siteTitle} - Top Construction Company in Bihar & India`} />
+            <meta property="og:title" content={title ? `${title} | ${siteTitle}` : `${siteTitle}: Best Construction Company in Bihar & India`} />
             <meta property="og:description" content={description || defaultDescription} />
             <meta property="og:image" content={image || defaultImage} />
 

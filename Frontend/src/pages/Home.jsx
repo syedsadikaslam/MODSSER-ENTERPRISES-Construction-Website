@@ -45,7 +45,6 @@ const Home = () => {
     return (
         <>
             <SEO
-                title="Best Construction Company in Begusarai, Bihar & India"
                 description="Modsser Enterprises is the leading construction company in Begusarai, Bihar, and India. We offer residential, commercial, and industrial construction services with top-quality materials."
                 keywords="construction company begusarai, best builders in bihar, top construction company india, residential construction, commercial contractors, industrial projects, civil engineering"
                 url="/"

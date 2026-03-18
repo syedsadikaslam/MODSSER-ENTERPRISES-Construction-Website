@@ -1,27 +1,27 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 
 // Pages & Components
 import Home from './pages/Home';
-import About from './pages/About';
-import ServiceDetail from './pages/ServiceDetail';
-import ProjectDetail from './pages/ProjectDetail';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import BookingPage from './pages/BookingPage';
-import Profile from './pages/Profile';
-import AdminDashboard from './pages/AdminDashboard';
-import AuthCallback from './pages/AuthCallback';
-import Careers from './pages/Careers';
+const About = lazy(() => import('./pages/About'));
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const BookingPage = lazy(() => import('./pages/BookingPage'));
+const Profile = lazy(() => import('./pages/Profile'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const AuthCallback = lazy(() => import('./pages/AuthCallback'));
+const Careers = lazy(() => import('./pages/Careers'));
 import VoiceflowWidget from './components/common/VoiceflowWidget';
 import WhatsAppButton from './components/common/WhatsAppButton';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import FAQ from './pages/FAQ';
-import Support from './pages/Support';
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const Support = lazy(() => import('./pages/Support'));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -79,23 +79,29 @@ function App() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services/:type" element={<ServiceDetail />} />
-                <Route path="/projects/:id" element={<ProjectDetail />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/book" element={<BookingPage />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-service" element={<TermsOfService />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/support" element={<Support />} />
-              </Routes>
+              <Suspense fallback={
+                <div className="flex h-screen w-full items-center justify-center bg-white">
+                  <div className="w-8 h-8 rounded-full animate-pulse bg-blue-500/50"></div>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services/:type" element={<ServiceDetail />} />
+                  <Route path="/projects/:id" element={<ProjectDetail />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/book" element={<BookingPage />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/support" element={<Support />} />
+                </Routes>
+              </Suspense>
 
               <VoiceflowWidget />
               <WhatsAppButton />
