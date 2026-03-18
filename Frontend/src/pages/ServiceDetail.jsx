@@ -82,11 +82,6 @@ const ServiceDetail = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 z-0" />
 
                 <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-                    <Link to="/#services" className="inline-flex items-center text-white/80 hover:text-white mb-8 group bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 transition-all">
-                        <ChevronLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        Back to Exploration
-                    </Link>
-
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center space-x-2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
                             <Star className="w-3 h-3 fill-white" />
